@@ -6,7 +6,7 @@
   "minNode": "10",
   "license": "MIT",
   "aliases": {
-    "basic": [
+    "default": [
       "package",
       "gitignore",
       "editorconfig",
