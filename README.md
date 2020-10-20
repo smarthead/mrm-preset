@@ -1,2 +1,2 @@
-# mrm-preset
+# Mrm preset
 SmartHead's preset for Mrm
