@@ -1,0 +1,21 @@
+{
+  "name": "SmartHead",
+  "email": "info@smarthead.ru",
+  "url": "https://smarthead.ru",
+  "github": "smarthead",
+  "minNode": "10",
+  "license": "MIT",
+  "aliases": {
+    "basic": [
+      "package",
+      "gitignore",
+      "editorconfig",
+      "stylelint",
+      "eslint",
+      "typescript",
+      "prettier",
+      "lint-staged",
+      "browserslist"
+    ]
+  }
+}

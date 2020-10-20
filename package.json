@@ -1,0 +1,36 @@
+{
+  "name": "@smarthead/mrm-preset",
+  "version": "0.1.0",
+  "description": "SmartHead's preset for Mrm",
+  "author": "SmartHead (https://smarthead.ru)",
+  "homepage": "https://github.com/smarthead/mrm-preset",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smarthead/mrm-preset.git"
+  },
+  "bugs": {
+    "url": "https://github.com/smarthead/mrm-preset/issues"
+  },
+  "private": false,
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "main": "config.json",
+  "files": [
+    "config.json",
+    "*/index.js"
+  ],
+  "keywords": [
+    "mrm",
+    "mrm-task",
+    "mrm-preset",
+    "smarthead"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "mrm-core": "^4.1.2"
+  }
+}
