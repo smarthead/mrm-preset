@@ -1,5 +1,4 @@
 # Mrm Preset
-![npm-publish](https://github.com/smarthead/mrm-preset/workflows/npm-publish/badge.svg?branch=master)
 
 SmartHead's preset for Mrm
 
