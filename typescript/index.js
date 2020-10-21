@@ -133,8 +133,10 @@ function task() {
     eslintrc.save();
 
     // Install new npm dependencies
-    install(packages, { dev: false });
-    install(packagesDev);
+    if (!isReact) {
+        install(packages, {dev: false});
+        install(packagesDev);
+    }
 }
 
 module.exports.description = 'Adds eslint';
