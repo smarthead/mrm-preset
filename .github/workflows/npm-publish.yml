@@ -7,10 +7,12 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout
-      - uses: actions/setup-node
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
         with:
           node-version: 10
-      - uses: JS-DevTools/npm-publish
+      - run: npm install
+      - run: npm test
+      - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
