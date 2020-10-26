@@ -1,17 +1,26 @@
-name: npm-publish
+name: npm Publish
+
 on:
   release:
     types: [created]
+
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Node
+      uses: actions/setup-node@v1
       with:
         node-version: '15.x'
         registry-url: 'https://registry.npmjs.org'
-    - run: npm install
-    - run: npm publish --access public
+
+    - name: Install
+      run: npm install
+      
+    - name: Publish
+      run: npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
