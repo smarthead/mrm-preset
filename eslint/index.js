@@ -10,7 +10,12 @@ function task() {
     const isReact = !!pkg.get('dependencies.react-scripts');
     const packages = [];
 
-    if (!isReact) {
+    if (isReact) {
+        packages.push([
+            'eslint-plugin-react',
+            'eslint-plugin-jsx-a11y',
+        ]);
+    } else {
         packages.push('eslint');
     }
 
@@ -52,8 +57,38 @@ function task() {
         },
         globals: {
             window: true,
-        }
+        },
+        extends: [
+            'eslint:recommended',
+        ],
+        parserOptions: {
+            ecmaVersion: 2020,
+            sourceType: 'module',
+        },
     });
+
+    if (isReact) {
+        eslintrc.merge({
+            extends: [
+                'plugin:react/recommended',
+                'plugin:jsx-a11y/strict',
+            ],
+            parserOptions: {
+                ecmaFeatures: {
+                    jsx: true,
+                },
+            },
+            plugins: [
+                'react',
+                'jsx-a11y',
+            ],
+            settings: {
+                react: {
+                    version: 'detect',
+                },
+            },
+        });
+    }
 
     // Use Babel parser if the project depends on Babel
     if (pkg.get('devDependencies.@babel/core') || pkg.get('dependencies.@babel/core')) {

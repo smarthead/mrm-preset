@@ -109,7 +109,10 @@ function task() {
         });
 
         eslintUpdatedExtends.push(...tsEslintExtends);
-        eslintUpdatedExtends.push('prettier');
+        eslintUpdatedExtends.push([
+            'prettier',
+            'prettier/@typescript-eslint'
+        ]);
 
         eslintrc.set('extends', eslintUpdatedExtends);
     } else {
@@ -133,8 +136,10 @@ function task() {
     eslintrc.save();
 
     // Install new npm dependencies
-    install(packages, { dev: false });
-    install(packagesDev);
+    if (!isReact) {
+        install(packages, {dev: false});
+        install(packagesDev);
+    }
 }
 
 module.exports.description = 'Adds eslint';
