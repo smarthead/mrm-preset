@@ -1,32 +1,45 @@
-const { json, install } = require('mrm-core');
+const { json, packageJson, install } = require('mrm-core');
 
 function task() {
+    const pkg = packageJson();
+    const isReact = !!pkg.get('dependencies.react-scripts');
     const packages = [
         'prettier',
         'eslint-config-prettier',
-        'eslint-plugin-prettier'
+        'eslint-plugin-prettier',
     ];
 
     // Create or load .eslintrc
-    json('.eslintrc')
-        .merge({
+    const eslintrc = json('.eslintrc');
+
+    eslintrc.merge({
+        extends: [
+            'prettier',
+            'prettier/@typescript-eslint',
+        ],
+        plugins: [
+            'prettier',
+        ],
+        rules: {
+            'prettier/prettier': 2,
+        }
+    });
+
+    if (isReact) {
+        eslintrc.merge({
             extends: [
-                'prettier'
+                'prettier/react',
             ],
-            plugins: [
-                'prettier'
-            ],
-            rules: {
-                'prettier/prettier': 2
-            }
-        })
-        .save();
+        });
+    }
+
+    eslintrc.save();
 
     // Create or load .prettierrc
     json('.prettierrc')
         .merge({
             tabWidth: 4,
-            singleQuote: true
+            singleQuote: true,
         })
         .save();
 
