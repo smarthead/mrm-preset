@@ -109,10 +109,8 @@ function task() {
         });
 
         eslintUpdatedExtends.push(...tsEslintExtends);
-        eslintUpdatedExtends.push([
-            'prettier',
-            'prettier/@typescript-eslint'
-        ]);
+        eslintUpdatedExtends.push('prettier');
+        eslintUpdatedExtends.push('prettier/@typescript-eslint');
 
         eslintrc.set('extends', eslintUpdatedExtends);
     } else {

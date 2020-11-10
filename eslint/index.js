@@ -11,10 +11,8 @@ function task() {
     const packages = [];
 
     if (isReact) {
-        packages.push([
-            'eslint-plugin-react',
-            'eslint-plugin-jsx-a11y',
-        ]);
+        packages.push('eslint-plugin-react');
+        packages.push('eslint-plugin-jsx-a11y');
     } else {
         packages.push('eslint');
     }
