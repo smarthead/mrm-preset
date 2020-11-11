@@ -1,6 +1,6 @@
 {
   "name": "@smarthead/mrm-preset",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "SmartHead preset for Mrm",
   "author": "SmartHead (https://smarthead.ru)",
   "homepage": "https://github.com/smarthead/mrm-preset",
@@ -19,8 +19,7 @@
   },
   "main": "config.json",
   "files": [
-    "config.json",
-    "*/index.js"
+    "config.json"
   ],
   "keywords": [
     "mrm",
