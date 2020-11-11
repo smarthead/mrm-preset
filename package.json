@@ -19,8 +19,7 @@
   },
   "main": "config.json",
   "files": [
-    "config.json",
-    "*/index.js"
+    "config.json"
   ],
   "keywords": [
     "mrm",

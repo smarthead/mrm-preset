@@ -1,18 +1,18 @@
 const {
     json,
     packageJson,
-    install
+    install,
 } = require('mrm-core');
 
 function task() {
     const pkg = packageJson();
     const isReact = !!pkg.get('dependencies.react-scripts');
     const packages = [
-        'typescript'
+        'typescript',
     ];
     const packagesDev = [
         '@typescript-eslint/eslint-plugin',
-        '@typescript-eslint/parser'
+        '@typescript-eslint/parser',
     ];
 
     // Create or load tsconfig.json
@@ -84,54 +84,31 @@ function task() {
 
                     /* Advanced Options */
                     "skipLibCheck": true,                     /* Skip type checking of declaration files. */
-                    "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
+                    "forceConsistentCasingInFileNames": true,  /* Disallow inconsistently-cased references to the same file. */
                 },
                 include: ['./src/**/*'],
-                exclude: ['**/*.spec.ts']
+                exclude: ['**/*.spec.ts'],
             })
             .save();
     }
 
     // Create or load .eslintrc
-    const eslintrc = json('.eslintrc');
-
-    // Merge extends
-    const eslintExtends = eslintrc.get('extends');
-    const tsEslintExtends = [
-        'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    ];
-    let eslintUpdatedExtends = [];
-
-    if (eslintExtends && Array.isArray(eslintExtends) && eslintExtends.includes('prettier')) {
-        eslintUpdatedExtends = eslintExtends.filter(function (item) {
-            return item !== 'prettier';
-        });
-
-        eslintUpdatedExtends.push(...tsEslintExtends);
-        eslintUpdatedExtends.push('prettier');
-        eslintUpdatedExtends.push('prettier/@typescript-eslint');
-
-        eslintrc.set('extends', eslintUpdatedExtends);
-    } else {
-        eslintrc.merge({
-            extends: tsEslintExtends
-        });
-    }
-
-    // Merge other
-    eslintrc.merge({
-        parser: "@typescript-eslint/parser",
-        parserOptions: {
-            project: './tsconfig.json',
-            tsconfigRootDir: '.'
-        },
-        plugins: [
-            '@typescript-eslint'
-        ],
-    });
-
-    eslintrc.save();
+    json('.eslintrc')
+        .merge({
+            extends: [
+                'plugin:@typescript-eslint/recommended',
+                'plugin:@typescript-eslint/recommended-requiring-type-checking',
+            ],
+            parser: "@typescript-eslint/parser",
+            parserOptions: {
+                project: './tsconfig.json',
+                tsconfigRootDir: '.',
+            },
+            plugins: [
+                '@typescript-eslint',
+            ],
+        })
+        .save();
 
     // Install new npm dependencies
     if (!isReact) {
