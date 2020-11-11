@@ -10,7 +10,7 @@ function task() {
         'stylelint',
         'stylelint-order',
         'stylelint-scss',
-        'git+https://git@gitlab.smarthead.ru/frontend-public/stylelint-config-sh.git'
+        '@smarthead/stylelint-config'
     ];
 
     // Add rules to .gitignore
