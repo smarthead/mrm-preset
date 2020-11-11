@@ -1,6 +1,6 @@
 # Mrm Preset
 
-SmartHead's preset for [Mrm](https://mrm.js.org)
+SmartHead preset for [Mrm](https://mrm.js.org)
 
 ## Usage
 
