@@ -1,7 +1,7 @@
 {
   "name": "@smarthead/mrm-preset",
   "version": "0.5.1",
-  "description": "SmartHead's preset for Mrm",
+  "description": "SmartHead preset for Mrm",
   "author": "SmartHead (https://smarthead.ru)",
   "homepage": "https://github.com/smarthead/mrm-preset",
   "repository": {
