@@ -42,7 +42,9 @@ function task() {
     // Create or load .stylelint
     json('.stylelintrc')
         .merge({
-            extends: '@smarthead/stylelint-config',
+            extends: [
+                '@smarthead/stylelint-config',
+            ],
             plugins: ['stylelint-scss'],
             rules: {}
         })
@@ -51,7 +53,9 @@ function task() {
     // Create or load .stylelint-extended
     json('.stylelintrc-extended')
         .merge({
-            extends: '@smarthead/stylelint-config/extended',
+            extends: [
+                '@smarthead/stylelint-config/extended',
+            ],
             plugins: [
                 'stylelint-scss',
                 'stylelint-order'

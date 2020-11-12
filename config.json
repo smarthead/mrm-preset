@@ -3,7 +3,7 @@
   "email": "info@smarthead.ru",
   "url": "https://smarthead.ru",
   "github": "smarthead",
-  "minNode": "10",
+  "minNode": "12",
   "license": "MIT",
   "aliases": {
     "default": [
