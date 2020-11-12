@@ -4,7 +4,7 @@ SmartHead preset for [Mrm](https://mrm.js.org)
 
 ## Usage
 
-You should initialize Git in your project before run this mrm preset
+You should initialize Git in your project before run mrm
 ```
 git init
 ```
