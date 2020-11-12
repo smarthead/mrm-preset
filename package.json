@@ -14,8 +14,7 @@
   "private": false,
   "license": "MIT",
   "engines": {
-    "npm": ">=6.6.0",
-    "node": ">=10"
+    "node": ">=12"
   },
   "main": "config.json",
   "files": [
