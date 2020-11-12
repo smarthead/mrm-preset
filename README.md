@@ -4,12 +4,12 @@ SmartHead preset for [Mrm](https://mrm.js.org)
 
 ## Usage
 
-For new projects without initialized Git
+You should initialize Git in your project before run this mrm preset
 ```
-git init && npx -p mrm -p @smarthead/mrm-preset mrm --preset @smarthead/mrm-preset default
+git init
 ```
 
-For existing projects with Git
+Running mrm with @smarthead/mrm-preset
 ```
 npx -p mrm -p @smarthead/mrm-preset mrm --preset @smarthead/mrm-preset default
 ```
