@@ -2,7 +2,7 @@
 
 SmartHead preset for [Mrm](https://mrm.js.org)
 
-This preset includes the following tasks:
+This preset includes the following tasks
  ```
 package
 gitignore
