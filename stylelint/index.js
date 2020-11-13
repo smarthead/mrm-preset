@@ -59,8 +59,7 @@ function task() {
             plugins: [
                 'stylelint-scss',
                 'stylelint-order'
-            ],
-            rules: {}
+            ]
         })
         .save();
 
