@@ -2,7 +2,7 @@ const {
     json,
     packageJson,
     lines,
-    install
+    install,
 } = require('mrm-core');
 
 function task() {
@@ -10,13 +10,13 @@ function task() {
         'stylelint',
         'stylelint-order',
         'stylelint-scss',
-        '@smarthead/stylelint-config'
+        '@smarthead/stylelint-config',
     ];
 
     // Add rules to .gitignore
     lines('.gitignore')
         .add([
-            '.stylelintcache'
+            '.stylelintcache',
         ])
         .save();
 
@@ -35,7 +35,7 @@ function task() {
             '/build',
             '**/*.js',
             '**/vendor/*',
-            '**/*.vendor*'
+            '**/*.vendor*',
         ])
         .save();
 
@@ -46,7 +46,7 @@ function task() {
                 '@smarthead/stylelint-config',
             ],
             plugins: ['stylelint-scss'],
-            rules: {}
+            rules: {},
         })
         .save();
 
@@ -58,7 +58,7 @@ function task() {
             ],
             plugins: [
                 'stylelint-scss',
-                'stylelint-order'
+                'stylelint-order',
             ]
         })
         .save();
