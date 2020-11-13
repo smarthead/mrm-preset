@@ -11,6 +11,6 @@ git init
 
 Running mrm with this mrm preset
 ```
-npx -p mrm -p @smarthead/mrm-preset mrm --preset @smarthead/mrm-preset default
+npx -p mrm -p @smarthead/mrm-preset@latest mrm --preset @smarthead/mrm-preset default
 ```
 
