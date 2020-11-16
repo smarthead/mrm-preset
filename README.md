@@ -2,6 +2,10 @@
 
 SmartHead preset for [Mrm](https://mrm.js.org)
 
+Mrm Preset supports 
+* TypeScript applications
+* Applications based on Create React App (TypeScript)
+
 This preset includes the following Mrm tasks
  ```
 package
