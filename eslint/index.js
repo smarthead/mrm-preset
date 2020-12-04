@@ -54,7 +54,7 @@ function task() {
             es2020: true
         },
         globals: {
-            window: true,
+            window: 'readonly',
         },
         extends: [
             'eslint:recommended',
