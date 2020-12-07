@@ -1,34 +1,41 @@
 const {
     packageJson,
-    install
+    lines,
+    install,
 } = require('mrm-core');
 
 function task({ eslintPreset }) {
     // Define packages to install
     const packages = [
         'lint-staged',
-        'husky'
+        'husky@next'
     ];
 
     // Create or load package.json
-    packageJson()
-        .merge({
-            husky: {
-                hooks: {
-                    'pre-commit': 'lint-staged'
-                }
-            },
-            'lint-staged': {
-                '*.{js,jsx,ts,tsx}': [
-                    'eslint --quiet --cache --fix --ext .js,.jsx,.ts,.tsx',
-                    'git add'
-                ],
-                '*.{css,scss}': [
-                    'stylelint --quiet --cache --fix --config .stylelintrc-extended',
-                    'git add'
-                ]
-            }
-        })
+    const pkg = packageJson();
+
+    pkg.merge({
+        'lint-staged': {
+            '*.{js,jsx,ts,tsx}': [
+                'eslint --quiet --cache --fix --ext .js,.jsx,.ts,.tsx',
+                'git add'
+            ],
+            '*.{css,scss}': [
+                'stylelint --quiet --cache --fix --config .stylelintrc-extended',
+                'git add'
+            ]
+        }
+    });
+
+    pkg.appendScript('lint-staged', 'lint-staged');
+
+    pkg.save();
+
+    // Add rules to .gitignore
+    lines('.gitignore')
+        .add([
+            '/.husky'
+        ])
         .save();
 
     // Install new npm dependencies
