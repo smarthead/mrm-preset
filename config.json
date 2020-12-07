@@ -10,12 +10,12 @@
       "package",
       "gitignore",
       "editorconfig",
+      "browserslist",
       "stylelint",
       "eslint",
       "typescript",
       "prettier",
-      "lint-staged",
-      "browserslist"
+      "lint-staged"
     ]
   }
 }

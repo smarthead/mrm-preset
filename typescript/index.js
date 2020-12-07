@@ -86,8 +86,11 @@ function task() {
                     "skipLibCheck": true,                     /* Skip type checking of declaration files. */
                     "forceConsistentCasingInFileNames": true,  /* Disallow inconsistently-cased references to the same file. */
                 },
-                include: ['./src/**/*'],
-                exclude: ['**/*.spec.ts'],
+                exclude: [
+                    '**/*.spec.ts',
+                    '**/vendor/*',
+                    '**/*.vendor*',
+                ],
             })
             .save();
     }
