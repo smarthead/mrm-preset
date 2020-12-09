@@ -43,12 +43,13 @@ function task(config) {
     pkg.appendScript('build:stage', '');
 
     // Add dependencies
+    // The string type is a hack for save an order of properties
     if (!values.dependencies) {
-        pkg.set('dependencies', {});
+        pkg.set('dependencies', "");
     }
 
     if (!values.devDependencies) {
-        pkg.set('devDependencies', {});
+        pkg.set('devDependencies', "");
     }
 
     pkg.save();
