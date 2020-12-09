@@ -29,6 +29,10 @@ function task({ eslintPreset }) {
     });
 
     pkg.appendScript('lint-staged', 'lint-staged');
+    pkg.appendScript(
+        'husky-install',
+        'npx rimraf .husky && npx husky install && npx husky add pre-commit \"npm run lint-staged\"'
+    );
 
     pkg.save();
 
