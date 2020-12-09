@@ -29,19 +29,16 @@ function task({ eslintPreset }) {
     });
 
     pkg.appendScript('lint-staged', 'lint-staged');
+
     pkg.appendScript(
-        'husky-install',
+        'husky-reinstall',
         'npx rimraf .husky && npx husky install && npx husky add pre-commit \"npm run lint-staged\"'
     );
 
-    pkg.save();
+    // CI should use "npm ci"
+    pkg.appendScript('postinstall', 'npx husky install');
 
-    // Add rules to .gitignore
-    lines('.gitignore')
-        .add([
-            '/.husky'
-        ])
-        .save();
+    pkg.save();
 
     // Install new npm dependencies
     install(packages);
