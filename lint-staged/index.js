@@ -48,7 +48,7 @@ function task({ eslintPreset }) {
         console.log('Installing Husky and git hooks...\n');
 
         exec(
-            'npx husky install && npx husky add pre-commit "npm run lint-staged"',
+            'npx husky install .husky && npx husky add .husky/pre-commit "npm run lint-staged"',
             (error, stdout, stderr) => {
                 if (error) {
                     console.error(`exec error: ${error}`);

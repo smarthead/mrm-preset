@@ -63,6 +63,9 @@ function task() {
             ecmaVersion: 2020,
             sourceType: 'module',
         },
+        rules: {
+            'react/prop-types': 0,
+        },
     });
 
     if (isReact) {
