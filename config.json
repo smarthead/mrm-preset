@@ -10,6 +10,7 @@
       "package",
       "gitignore",
       "editorconfig",
+      "gitattributes",
       "browserslist",
       "stylelint",
       "eslint",

@@ -68,6 +68,7 @@ function task() {
         .merge({
             tabWidth: 4,
             singleQuote: true,
+            endOfLine: 'lf',
         })
         .save();
 

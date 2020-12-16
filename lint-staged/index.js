@@ -1,4 +1,4 @@
-const { exec, spawn } = require('child_process');
+const { exec } = require('child_process');
 const {
     packageJson,
     lines,
@@ -9,7 +9,7 @@ function task({ eslintPreset }) {
     // Define packages to install
     const packages = [
         'lint-staged',
-        'husky@next'
+        'husky@next',
     ];
 
     // Create or load package.json
@@ -19,20 +19,18 @@ function task({ eslintPreset }) {
         'lint-staged': {
             '*.{js,jsx,ts,tsx}': [
                 'eslint --quiet --cache --fix --ext .js,.jsx,.ts,.tsx',
-                'git add'
             ],
             '*.{css,scss}': [
                 'stylelint --quiet --cache --fix --config .stylelintrc-extended',
-                'git add'
-            ]
-        }
+            ],
+        },
     });
 
     pkg.appendScript('lint-staged', 'lint-staged');
 
     pkg.appendScript(
         'husky-reinstall',
-        'npx rimraf .husky && npx husky install && npx husky add pre-commit \"npm run lint-staged\"'
+        'npx rimraf .husky && npx husky install && npx husky add pre-commit \"npm run lint-staged\"',
     );
 
     // CI should use "npm ci"
@@ -43,48 +41,22 @@ function task({ eslintPreset }) {
     // Install new npm dependencies
     install(packages);
 
-    // Init Husky (for Husky 5+)
+    // Init Husky (for Husky 5+) and add a pre-commit hook
     if (!lines('.husky/pre-commit').exists()) {
         console.log('Installing Husky and git hooks...\n');
 
         exec(
-            'npx husky install .husky',
-            () => {
-                // Add a pre-commit hook
-                exec('npx husky add .husky/pre-commit "npm run lint-staged"',
-                    (error, stdout, stderr) => {
-                        if (error) {
-                            console.error(`exec error: ${error}`);
-                            return;
-                        }
+            'npx husky install .husky && npx husky add .husky/pre-commit "npm run lint-staged"',
+            (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`exec error: ${error}`);
+                    return;
+                }
 
-                        console.log(stdout);
-                        console.error(stderr);
-                    },
-                );
+                console.log(stdout);
+                console.error(stderr);
             },
         );
-
-
-
-        // const child = spawn(
-        //     'npx husky install .husky && npx husky add .husky/pre-commit "npm run lint-staged"',
-        //     {
-        //         shell: true,
-        //     },
-        // );
-        //
-        // child.stderr.on('data', (data) => {
-        //     console.error(data.toString());
-        // });
-        //
-        // child.stdout.on('data', (data) => {
-        //     console.log(data.toString());
-        // });
-        //
-        // child.on('exit', (exitCode) => {
-        //     console.log("Child exited with code: " + exitCode);
-        // });
     }
 }
 
