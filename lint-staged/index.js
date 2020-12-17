@@ -29,12 +29,12 @@ function task({ eslintPreset }) {
     pkg.appendScript('lint-staged', 'lint-staged');
 
     pkg.appendScript(
-        'husky-reinstall',
+        'husky:reinstall',
         'npx rimraf .husky && npx husky install && npx husky add pre-commit \"npm run lint-staged\"',
     );
 
     // CI should use "npm ci"
-    pkg.appendScript('postinstall', 'npx husky install');
+    pkg.appendScript('husky:install', 'npx husky install');
 
     pkg.save();
 

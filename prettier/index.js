@@ -24,7 +24,7 @@ function task() {
         ],
         rules: {
             'prettier/prettier': 2,
-        }
+        },
     });
 
     if (isReact) {
@@ -50,9 +50,10 @@ function task() {
                 true, {
                     tabWidth: 4,
                     singleQuote: false,
-                }
-            ]
-        }
+                    endOfLine: 'lf',
+                },
+            ],
+        },
     };
 
     json('.stylelintrc')

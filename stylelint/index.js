@@ -39,7 +39,7 @@ function task() {
         ])
         .save();
 
-    // Create or load .stylelint
+    // Create or load .stylelintrc
     json('.stylelintrc')
         .merge({
             extends: [
@@ -59,7 +59,7 @@ function task() {
             plugins: [
                 'stylelint-scss',
                 'stylelint-order',
-            ]
+            ],
         })
         .save();
 
