@@ -47,7 +47,8 @@ function task() {
         ],
         rules: {
             'prettier/prettier': [
-                true, {
+                true,
+                {
                     tabWidth: 4,
                     singleQuote: false,
                     endOfLine: 'lf',

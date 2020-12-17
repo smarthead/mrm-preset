@@ -39,11 +39,22 @@ function task() {
     pkg.appendScript('lint:fix', 'npm run lint:js:fix');
     pkg.setScript('lint:js', 'eslint --quiet --cache --ext .js,.jsx,.ts,.tsx src');
     pkg.setScript('lint:js:fix', 'eslint --quiet --cache --fix --ext .js,.jsx,.ts,.tsx src');
-
+    pkg.unset('eslintConfig');
     pkg.save();
 
     // Create or load .eslintrc
     const eslintrc = json('.eslintrc');
+    const eslintExtends = (isReact) ?
+        [
+            'react-app',
+            'react-app/jest',
+            'eslint:recommended',
+            'plugin:react/recommended',
+            'plugin:jsx-a11y/strict',
+        ] :
+        [
+            'eslint:recommended',
+        ];
 
     eslintrc.merge({
         env: {
@@ -56,24 +67,18 @@ function task() {
         globals: {
             window: 'readonly',
         },
-        extends: [
-            'eslint:recommended',
-        ],
+        extends: eslintExtends,
+        rules: {
+            'react/prop-types': 0,
+        },
         parserOptions: {
             ecmaVersion: 2020,
             sourceType: 'module',
-        },
-        rules: {
-            'react/prop-types': 0,
         },
     });
 
     if (isReact) {
         eslintrc.merge({
-            extends: [
-                'plugin:react/recommended',
-                'plugin:jsx-a11y/strict',
-            ],
             parserOptions: {
                 ecmaFeatures: {
                     jsx: true,
