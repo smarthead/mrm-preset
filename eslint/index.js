@@ -37,8 +37,14 @@ function task() {
     // Create or load package.json
     pkg.appendScript('lint', 'npm run lint:js');
     pkg.appendScript('lint:fix', 'npm run lint:js:fix');
-    pkg.setScript('lint:js', 'eslint --quiet --cache --ext .js,.jsx,.ts,.tsx src');
-    pkg.setScript('lint:js:fix', 'eslint --quiet --cache --fix --ext .js,.jsx,.ts,.tsx src');
+    pkg.setScript(
+        'lint:js',
+        'eslint --quiet --cache --no-error-on-unmatched-pattern --ext .js,.jsx,.ts,.tsx src'
+    );
+    pkg.setScript(
+        'lint:js:fix',
+        'eslint --quiet --cache --no-error-on-unmatched-pattern --fix --ext .js,.jsx,.ts,.tsx src'
+    );
     pkg.unset('eslintConfig');
     pkg.save();
 

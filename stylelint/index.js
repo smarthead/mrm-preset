@@ -25,9 +25,15 @@ function task() {
     packageJson()
         .appendScript('lint', 'npm run lint:css')
         .appendScript('lint:fix', 'npm run lint:css:fix')
-        .setScript('lint:css', 'stylelint --quiet --cache \"src/**/*.{css,scss}\"')
-        .setScript('lint:css:fix', 'stylelint --quiet --cache --fix --config .stylelintrc-extended \"src/**/*.{css,scss}\"')
+        .setScript(
+            'lint:css',
+            'stylelint --quiet --cache --allow-empty-input \"src/**/*.{css,scss}\"')
+        .setScript(
+            'lint:css:fix',
+            'stylelint --quiet --cache --allow-empty-input --fix --config .stylelintrc-extended \"src/**/*.{css,scss}\"')
         .save();
+
+
 
     // Create or load .stylelintignore, and set basic ignores
     lines('.stylelintignore')
