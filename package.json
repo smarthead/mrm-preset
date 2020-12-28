@@ -19,6 +19,7 @@
   "main": "config.json",
   "files": [
     "config.json",
+    "*/config.js",
     "*/index.js"
   ],
   "keywords": [
