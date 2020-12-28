@@ -9,7 +9,7 @@ function task({ eslintPreset }) {
     // Define packages to install
     const packages = [
         'lint-staged',
-        'husky@next',
+        'husky@^5.0.6',
     ];
 
     // Create or load package.json
@@ -33,7 +33,7 @@ function task({ eslintPreset }) {
 
     pkg.save();
 
-    // Install new npm dependencies
+    // Install npm dependencies
     install(packages);
 
     // Init Husky (for Husky 5+) and add a pre-commit hook

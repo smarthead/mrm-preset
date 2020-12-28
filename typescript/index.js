@@ -8,13 +8,15 @@ const {
 function task() {
     const pkg = packageJson();
     const isReact = !!pkg.get('dependencies.react-scripts');
-    const packages = [
-        'typescript',
-    ];
-    const packagesDev = [
-        '@typescript-eslint/eslint-plugin',
-        '@typescript-eslint/parser',
-    ];
+    const packages = {
+        dependencies: [
+            'typescript',
+        ],
+        devDependencies: [
+            '@typescript-eslint/eslint-plugin',
+            '@typescript-eslint/parser',
+        ],
+    };
 
     // Create or load tsconfig.json
     if (!isReact) {
@@ -41,10 +43,10 @@ function task() {
         })
         .save();
 
-    // Install new npm dependencies
+    // Install npm dependencies
     if (!isReact) {
-        install(packages, {dev: false});
-        install(packagesDev);
+        install(packages.dependencies, { dev: false });
+        install(packages.devDependencies);
     }
 }
 

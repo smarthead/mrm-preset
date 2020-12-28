@@ -67,7 +67,7 @@ function task() {
         .merge(config.js)
         .save();
 
-    // Install new npm dependencies
+    // Install npm dependencies
     install(packages);
 }
 

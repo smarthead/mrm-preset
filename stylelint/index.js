@@ -28,13 +28,13 @@ function task() {
         .appendScript('lint:fix', 'npm run lint:css:fix')
         .setScript(
             'lint:css',
-            'stylelint --quiet --cache --allow-empty-input \"src/**/*.{css,scss}\"')
+            'stylelint --quiet --cache --allow-empty-input \"src/**/*.{css,scss}\"',
+        )
         .setScript(
             'lint:css:fix',
-            'stylelint --quiet --cache --allow-empty-input --fix --config .stylelintrc-extended \"src/**/*.{css,scss}\"')
+            'stylelint --quiet --cache --allow-empty-input --fix --config .stylelintrc-extended \"src/**/*.{css,scss}\"',
+        )
         .save();
-
-
 
     // Create or load .stylelintignore, and set basic ignores
     lines('.stylelintignore')
@@ -79,7 +79,7 @@ function task() {
         })
         .save();
 
-    // Install new npm dependencies
+    // Install npm dependencies
     install(packages);
 }
 
