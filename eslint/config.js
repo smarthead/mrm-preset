@@ -1,6 +1,8 @@
 const config = {
     ts: {
-        rules: {},
+        rules: {
+            curly: [2, 'all'],
+        },
     },
     reactTs: {
         rules: {
