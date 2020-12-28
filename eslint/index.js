@@ -1,3 +1,4 @@
+const config = require('./config');
 const {
     json,
     packageJson,
@@ -74,9 +75,7 @@ function task() {
             window: 'readonly',
         },
         extends: eslintExtends,
-        rules: {
-            'react/prop-types': 0,
-        },
+        rules: config.ts.rules,
         parserOptions: {
             ecmaVersion: 2020,
             sourceType: 'module',
@@ -85,6 +84,7 @@ function task() {
 
     if (isReact) {
         eslintrc.merge({
+            rules: config.reactTs.rules,
             parserOptions: {
                 ecmaFeatures: {
                     jsx: true,

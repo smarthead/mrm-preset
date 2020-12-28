@@ -26,15 +26,10 @@ function task({ eslintPreset }) {
         },
     });
 
-    pkg.appendScript('lint-staged', 'lint-staged');
-
-    pkg.appendScript(
-        'husky:reinstall',
-        'npx rimraf .husky && npx husky install .husky && npx husky add .husky/pre-commit \"npm run lint-staged\"',
-    );
-
-    // CI should use "npm ci"
-    pkg.appendScript('husky:install', 'npx husky install .husky');
+    pkg.appendScript('lint:staged', 'lint-staged');
+    pkg.appendScript('husky:install', 'husky install .husky');
+    pkg.appendScript('husky:add', 'husky add .husky/pre-commit \"npm run lint:staged\"');
+    pkg.appendScript('husky:uninstall', 'npx rimraf .husky');
 
     pkg.save();
 
@@ -46,7 +41,7 @@ function task({ eslintPreset }) {
         console.log('Installing Husky and git hooks...\n');
 
         exec(
-            'npx husky install .husky && npx husky add .husky/pre-commit "npm run lint-staged"',
+            'npm run husky:install && npm run husky:add',
             (error, stdout, stderr) => {
                 if (error) {
                     console.error(`exec error: ${error}`);
