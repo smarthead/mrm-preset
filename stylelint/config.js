@@ -2,7 +2,6 @@ const config = {
     rules: {
         basic: {
             indentation: 4,
-            'no-descending-specificity': null,
         },
         extended: {
             'order/properties-order': [
