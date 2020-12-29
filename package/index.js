@@ -1,56 +1,44 @@
 const { packageJson } = require('mrm-core');
 
-function task(config) {
+function task(mrmConfig) {
     const pkg = packageJson();
-    const values = pkg.get();
+    const {
+        name: currentName,
+        version: currentVersion,
+        description: currentDescription,
+        author: currentAuthor,
+        private: currentPrivate,
+        license: currentLicense,
+        engines: currentEngines,
+        scripts: currentScripts,
+        dependencies: currentDependencies,
+        devDependencies: currentDevDependencies,
+        ...otherCurrentValues
+    } = pkg.get();
 
-    // Add rules
-    if (!values.name) {
-        // TODO: Get the folder name
-        pkg.set('name', 'project-name');
-    }
+    pkg.set({
+        name: currentName || 'project-name',
+        version: currentVersion || '0.1.0',
+        description: currentDescription || '',
+        author: currentAuthor || `${mrmConfig.name} (${mrmConfig.url})`,
+        private: currentPrivate || true,
+        license: currentLicense || mrmConfig.license,
+        engines: currentEngines || { node: `>=${mrmConfig.minNode}` },
 
-    if (!values.version) {
-        pkg.set('version', '0.1.0');
-    }
+        scripts: {
+            start: currentScripts.start || '',
+            build: currentScripts.build || '',
+            'build:prod': currentScripts['build:prod'] || '',
+            'build:stage': currentScripts['build:stage'] || '',
+            ...currentScripts,
+        },
 
-    if (!values.description) {
-        pkg.set('description', '');
-    }
+        // The string type is a hack for save an order of properties
+        dependencies: currentDependencies || '',
+        devDependencies: currentDevDependencies || '',
 
-    if (!values.author) {
-        pkg.set('author', `${config.name} (${config.url})`);
-    }
-
-    if (values.private === undefined) {
-        pkg.set('private', true);
-    }
-
-    if (!values.license) {
-        pkg.set('license', config.license);
-    }
-
-    if (!values.engines) {
-        pkg.set('engines', {
-            node: `>=${config.minNode}`
-        });
-    }
-
-    // Add scripts
-    pkg.appendScript('start', '');
-    pkg.appendScript('build', '');
-    pkg.appendScript('build:prod', '');
-    pkg.appendScript('build:stage', '');
-
-    // Add dependencies
-    // The string type is a hack for save an order of properties
-    if (!values.dependencies) {
-        pkg.set('dependencies', '');
-    }
-
-    if (!values.devDependencies) {
-        pkg.set('devDependencies', '');
-    }
+        ...otherCurrentValues,
+    });
 
     pkg.save();
 }
