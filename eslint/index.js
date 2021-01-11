@@ -1,8 +1,9 @@
+const config = require('./config');
 const {
     json,
     packageJson,
     lines,
-    install
+    install,
 } = require('mrm-core');
 
 function task() {
@@ -20,7 +21,7 @@ function task() {
     // Add rules to .gitignore
     lines('.gitignore')
         .add([
-            '.eslintcache'
+            '.eslintcache',
         ])
         .save();
 
@@ -30,7 +31,7 @@ function task() {
             '/node_modules',
             '/build',
             '**/vendor/*',
-            '**/*.vendor*'
+            '**/*.vendor*',
         ])
         .save();
 
@@ -39,11 +40,11 @@ function task() {
     pkg.appendScript('lint:fix', 'npm run lint:js:fix');
     pkg.setScript(
         'lint:js',
-        'eslint --quiet --cache --no-error-on-unmatched-pattern --ext .js,.jsx,.ts,.tsx src'
+        'eslint --quiet --cache --no-error-on-unmatched-pattern --ext .js,.jsx,.ts,.tsx src',
     );
     pkg.setScript(
         'lint:js:fix',
-        'eslint --quiet --cache --no-error-on-unmatched-pattern --fix --ext .js,.jsx,.ts,.tsx src'
+        'eslint --quiet --cache --no-error-on-unmatched-pattern --fix --ext .js,.jsx,.ts,.tsx src',
     );
     pkg.unset('eslintConfig');
     pkg.save();
@@ -68,15 +69,13 @@ function task() {
             node: true,
             es6: true,
             es2017: true,
-            es2020: true
+            es2020: true,
         },
         globals: {
             window: 'readonly',
         },
         extends: eslintExtends,
-        rules: {
-            'react/prop-types': 0,
-        },
+        rules: config.ts.rules,
         parserOptions: {
             ecmaVersion: 2020,
             sourceType: 'module',
@@ -85,6 +84,7 @@ function task() {
 
     if (isReact) {
         eslintrc.merge({
+            rules: config.reactTs.rules,
             parserOptions: {
                 ecmaFeatures: {
                     jsx: true,
@@ -109,13 +109,13 @@ function task() {
         packages.push(parser);
 
         eslintrc.merge({
-            parser
+            parser,
         });
     }
 
     eslintrc.save();
 
-    // Install new npm dependencies
+    // Install npm dependencies
     install(packages);
 }
 

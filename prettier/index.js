@@ -1,3 +1,4 @@
+const config = require('./config');
 const { json, packageJson, install } = require('mrm-core');
 
 function task() {
@@ -48,11 +49,7 @@ function task() {
         rules: {
             'prettier/prettier': [
                 true,
-                {
-                    tabWidth: 4,
-                    singleQuote: false,
-                    endOfLine: 'lf',
-                },
+                config.css,
             ],
         },
     };
@@ -67,14 +64,10 @@ function task() {
 
     // Create or load .prettierrc
     json('.prettierrc')
-        .merge({
-            tabWidth: 4,
-            singleQuote: true,
-            endOfLine: 'lf',
-        })
+        .merge(config.js)
         .save();
 
-    // Install new npm dependencies
+    // Install npm dependencies
     install(packages);
 }
 

@@ -9,13 +9,13 @@ function task() {
             indent_size: 4,
             end_of_line: 'lf',
             insert_final_newline: true,
-            trim_trailing_whitespace: true
+            trim_trailing_whitespace: true,
         })
         .set('*.{json,yml,md,babelrc}', {
-            indent_size: 2
+            indent_size: 2,
         })
         .set('*.md', {
-            trim_trailing_whitespace: false
+            trim_trailing_whitespace: false,
         })
         .save();
 }

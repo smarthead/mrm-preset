@@ -10,7 +10,7 @@ function task() {
             '*.local',
             '*.log',
             '*.log*',
-            '/.sass-cache'
+            '/.sass-cache',
         ])
         .save();
 }

@@ -4,19 +4,20 @@ SmartHead preset for [Mrm](https://mrm.js.org)
 
 Mrm Preset supports 
 * TypeScript applications
-* Applications based on Create React App (TypeScript)
+* Applications based on [Create React App](https://create-react-app.dev) (TypeScript)
 
 This preset includes the following Mrm tasks
  ```
 package
 gitignore
 editorconfig
+gitattributes
+browserslist
 stylelint
 eslint
 typescript
 prettier
 lint-staged
-browserslist
  ```
 
 ## Usage
