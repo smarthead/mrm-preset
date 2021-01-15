@@ -10,7 +10,7 @@ function task(mrmConfig) {
         private: currentPrivate,
         license: currentLicense,
         engines: currentEngines,
-        scripts: currentScripts,
+        scripts: currentScripts = {},
         dependencies: currentDependencies,
         devDependencies: currentDevDependencies,
         ...otherCurrentValues
@@ -24,7 +24,6 @@ function task(mrmConfig) {
         private: currentPrivate || true,
         license: currentLicense || mrmConfig.license,
         engines: currentEngines || { node: `>=${mrmConfig.minNode}` },
-
         scripts: {
             start: currentScripts.start || '',
             build: currentScripts.build || '',
@@ -32,11 +31,8 @@ function task(mrmConfig) {
             'build:stage': currentScripts['build:stage'] || '',
             ...currentScripts,
         },
-
-        // The string type is a hack for save an order of properties
-        dependencies: currentDependencies || '',
-        devDependencies: currentDevDependencies || '',
-
+        dependencies: currentDependencies || {},
+        devDependencies: currentDevDependencies || {},
         ...otherCurrentValues,
     });
 

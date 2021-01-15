@@ -7,7 +7,6 @@
   "license": "MIT",
   "aliases": {
     "default": [
-      "package",
       "gitignore",
       "editorconfig",
       "gitattributes",
@@ -16,7 +15,8 @@
       "eslint",
       "typescript",
       "prettier",
-      "lint-staged"
+      "lint-staged",
+      "package"
     ]
   }
 }
