@@ -14,6 +14,7 @@ function task() {
 
     // Create or load .eslintrc
     const eslintrc = json('.eslintrc');
+    const eslintrcExtended = json('.eslintrc-extended');
 
     eslintrc.merge({
         extends: [
@@ -28,8 +29,21 @@ function task() {
         },
     });
 
+    eslintrcExtended.merge({
+        extends: [
+            'prettier',
+            'prettier/@typescript-eslint',
+        ],
+    });
+
     if (isReact) {
         eslintrc.merge({
+            extends: [
+                'prettier/react',
+            ],
+        });
+
+        eslintrcExtended.merge({
             extends: [
                 'prettier/react',
             ],
@@ -37,6 +51,7 @@ function task() {
     }
 
     eslintrc.save();
+    eslintrcExtended.save();
 
     // Create or load .stylelintrc
     const stylelintConfig = {

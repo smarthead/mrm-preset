@@ -30,7 +30,6 @@ function task() {
         .merge({
             extends: [
                 'plugin:@typescript-eslint/recommended',
-                'plugin:@typescript-eslint/recommended-requiring-type-checking',
             ],
             parser: "@typescript-eslint/parser",
             parserOptions: {
@@ -39,6 +38,15 @@ function task() {
             },
             plugins: [
                 '@typescript-eslint',
+            ],
+        })
+        .save();
+
+    json('.eslintrc-extended')
+        .merge({
+            extends: [
+                'plugin:@typescript-eslint/recommended',
+                'plugin:@typescript-eslint/recommended-requiring-type-checking',
             ],
         })
         .save();

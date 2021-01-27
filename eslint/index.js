@@ -51,6 +51,7 @@ function task() {
 
     // Create or load .eslintrc
     const eslintrc = json('.eslintrc');
+    const eslintrcExtended = json('.eslintrc-extended');
     const eslintExtends = (isReact) ?
         [
             'react-app',
@@ -113,7 +114,12 @@ function task() {
         });
     }
 
+    eslintrcExtended.merge({
+        extends: eslintExtends,
+    });
+
     eslintrc.save();
+    eslintrcExtended.save();
 
     // Install npm dependencies
     install(packages);

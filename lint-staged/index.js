@@ -18,7 +18,7 @@ function task({ eslintPreset }) {
     pkg.merge({
         'lint-staged': {
             '*.{js,jsx,ts,tsx}': [
-                'eslint --quiet --cache --fix --ext .js,.jsx,.ts,.tsx',
+                'eslint --quiet --cache --fix --config .eslintrc-extended --ext .js,.jsx,.ts,.tsx',
             ],
             '*.{css,scss}': [
                 'stylelint --quiet --cache --fix --config .stylelintrc-extended',
