@@ -83,6 +83,10 @@ function task() {
         },
     });
 
+    eslintrcExtended.merge({
+        extends: eslintExtends,
+    });
+
     if (isReact) {
         eslintrc.merge({
             rules: config.reactTs.rules,
@@ -113,10 +117,6 @@ function task() {
             parser,
         });
     }
-
-    eslintrcExtended.merge({
-        extends: eslintExtends,
-    });
 
     eslintrc.save();
     eslintrcExtended.save();
