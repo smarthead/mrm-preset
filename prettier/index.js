@@ -2,8 +2,6 @@ const config = require('./config');
 const { json, packageJson, install } = require('mrm-core');
 
 function task() {
-    const pkg = packageJson();
-    const isReact = !!pkg.get('dependencies.react-scripts');
     const packages = [
         'prettier',
         'eslint-plugin-prettier',
@@ -19,7 +17,6 @@ function task() {
     eslintrc.merge({
         extends: [
             'prettier',
-            'prettier/@typescript-eslint',
         ],
         plugins: [
             'prettier',
@@ -32,23 +29,8 @@ function task() {
     eslintrcExtended.merge({
         extends: [
             'prettier',
-            'prettier/@typescript-eslint',
         ],
     });
-
-    if (isReact) {
-        eslintrc.merge({
-            extends: [
-                'prettier/react',
-            ],
-        });
-
-        eslintrcExtended.merge({
-            extends: [
-                'prettier/react',
-            ],
-        });
-    }
 
     eslintrc.save();
     eslintrcExtended.save();
