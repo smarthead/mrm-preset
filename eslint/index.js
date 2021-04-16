@@ -46,16 +46,16 @@ function task() {
         'lint:js:fix',
         'eslint --quiet --cache --no-error-on-unmatched-pattern --fix --ext .js,.jsx,.ts,.tsx src',
     );
-    pkg.unset('eslintConfig');
     pkg.save();
 
     // Create or load .eslintrc
-    const eslintrc = json('.eslintrc');
-    const eslintrcExtended = json('.eslintrc-extended');
+    const reactEslintrc = pkg.get('eslintConfig.extends') || [];
+    const eslintrcFilename = (isReact) ? '.eslintrc-project' : '.eslintrc';
+    const eslintrc = json(eslintrcFilename);
+    // const eslintrcExtended = json('.eslintrc-extended');
     const eslintExtends = (isReact) ?
         [
-            'react-app',
-            'react-app/jest',
+            ...reactEslintrc,
             'eslint:recommended',
             'plugin:react/recommended',
             'plugin:jsx-a11y/strict',
@@ -83,9 +83,9 @@ function task() {
         },
     });
 
-    eslintrcExtended.merge({
-        extends: eslintExtends,
-    });
+    // eslintrcExtended.merge({
+    //     extends: eslintExtends,
+    // });
 
     if (isReact) {
         eslintrc.merge({
@@ -119,7 +119,7 @@ function task() {
     }
 
     eslintrc.save();
-    eslintrcExtended.save();
+    // eslintrcExtended.save();
 
     // Install npm dependencies
     install(packages);
