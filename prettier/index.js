@@ -41,10 +41,8 @@ function task(presetConfig) {
 
     if (presetConfig.styles === 'css' || presetConfig.styles === 'scss') {
         // Add stylelint-prettier packages
-        packages.push([
-            'stylelint-prettier',
-            'stylelint-config-prettier',
-        ]);
+        packages.push('stylelint-prettier');
+        packages.push('stylelint-config-prettier');
 
         // Create or load .stylelintrc
         const stylelintConfig = {

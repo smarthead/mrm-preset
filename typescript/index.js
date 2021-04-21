@@ -22,10 +22,14 @@ function task() {
     }
 
     // Create or load .eslintrc
-    json('.eslintrc')
+    const eslintrcFilename = (hasReact) ? '.eslintrc-project' : '.eslintrc';
+    const eslintrc = json(eslintrcFilename);
+
+    eslintrc
         .merge({
             extends: [
                 'plugin:@typescript-eslint/recommended',
+                'plugin:@typescript-eslint/recommended-requiring-type-checking',
             ],
             parser: "@typescript-eslint/parser",
             parserOptions: {
@@ -35,17 +39,9 @@ function task() {
             plugins: [
                 '@typescript-eslint',
             ],
-        })
-        .save();
+        });
 
-    json('.eslintrc-extended')
-        .merge({
-            extends: [
-                'plugin:@typescript-eslint/recommended',
-                'plugin:@typescript-eslint/recommended-requiring-type-checking',
-            ],
-        })
-        .save();
+    eslintrc.save();
 
     // Install npm dependencies
     if (!hasReact) {
