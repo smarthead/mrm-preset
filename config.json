@@ -5,6 +5,9 @@
   "github": "smarthead",
   "minNode": "12",
   "license": "MIT",
+  "styles": "scss",
+  "lang": "ts",
+  "framework": "none",
   "aliases": {
     "default": [
       "gitignore",

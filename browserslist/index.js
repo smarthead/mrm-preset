@@ -1,9 +1,9 @@
-const { lines, packageJson } = require('mrm-core');
+const { lines } = require('mrm-core');
+const defineReact = require('../utils/defineReact.js');
 
 function task() {
+    const isReact = defineReact();
     const browserslistrc = lines('.browserslistrc');
-    const pkg = packageJson();
-    const isReact = !!pkg.get('dependencies.react-scripts');
 
     if (browserslistrc.exists() || isReact) {
         return;
