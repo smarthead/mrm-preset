@@ -1,6 +1,6 @@
 const { packageJson } = require('mrm-core');
 
-function defineReact () {
+function detectReact () {
     const pkg = packageJson();
 
     return !!(
@@ -9,4 +9,4 @@ function defineReact () {
     );
 }
 
-module.exports = defineReact;
+module.exports = detectReact;

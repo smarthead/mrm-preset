@@ -4,9 +4,10 @@ const {
     lines,
     install,
 } = require('mrm-core');
+const detectReact = require('../utils/detectReact.js');
 
 function task(config) {
-    // Define packages to install
+    const hasReact = detectReact();
     const packages = [
         'lint-staged',
         'husky@^5.0.6',
@@ -14,11 +15,17 @@ function task(config) {
 
     // Create or load package.json
     const pkg = packageJson();
-    const lintStaged = {
-        '*.{js,jsx,ts,tsx}': [
-            'eslint --quiet --cache --fix --config .eslintrc-extended --ext .js,.jsx,.ts,.tsx',
-        ],
-    };
+    const lintStaged = {};
+
+    if (hasReact) {
+        lintStaged['*.{js,jsx,ts,tsx}'] = [
+            'eslint --quiet --cache --fix --config .eslintrc-project --ext .js,.jsx,.ts,.tsx',
+        ];
+    } else {
+        lintStaged['*.{js,ts}'] = [
+            'eslint --quiet --cache --fix --ext .js,.ts',
+        ];
+    }
 
     if (config.styles === 'css' || config.styles === 'scss') {
         lintStaged['*.{css,scss}'] = [

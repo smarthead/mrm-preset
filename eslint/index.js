@@ -5,7 +5,7 @@ const {
     lines,
     install,
 } = require('mrm-core');
-const defineReact = require('../utils/defineReact.js');
+const defineReact = require('../utils/detectReact.js');
 
 function task() {
     const pkg = packageJson();
@@ -143,11 +143,11 @@ function task() {
         // Add scripts to package.json
         pkg.setScript(
             'lint:js',
-            'eslint --quiet --cache --no-error-on-unmatched-pattern --ext .js,.jsx,.ts,.tsx src',
+            'eslint --quiet --cache --no-error-on-unmatched-pattern --ext .js,.ts src',
         );
         pkg.setScript(
             'lint:js:fix',
-            'eslint --quiet --cache --no-error-on-unmatched-pattern --fix --ext .js,.jsx,.ts,.tsx src',
+            'eslint --quiet --cache --no-error-on-unmatched-pattern --fix --ext .js,.ts src',
         );
     }
 
