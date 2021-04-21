@@ -1,13 +1,13 @@
 {
-  "name": "SmartHead",
-  "email": "info@smarthead.ru",
-  "url": "https://smarthead.ru",
-  "github": "smarthead",
+  "name": "",
+  "email": "",
+  "url": "",
+  "github": "",
   "minNode": "12",
   "license": "MIT",
   "styles": "scss",
   "lang": "ts",
-  "framework": "none",
+  "template": "none",
   "aliases": {
     "default": [
       "gitignore",

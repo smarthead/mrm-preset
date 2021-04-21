@@ -1,22 +1,16 @@
-const config = require('./config');
+const eslintConfig = require('./config');
 const {
     json,
     packageJson,
     lines,
     install,
 } = require('mrm-core');
+const defineReact = require('../utils/defineReact.js');
 
 function task() {
     const pkg = packageJson();
-    const isReact = !!pkg.get('dependencies.react-scripts');
+    const hasReact = defineReact();
     const packages = [];
-
-    if (isReact) {
-        packages.push('eslint-plugin-react');
-        packages.push('eslint-plugin-jsx-a11y');
-    } else {
-        packages.push('eslint');
-    }
 
     // Add rules to .gitignore
     lines('.gitignore')
@@ -35,62 +29,58 @@ function task() {
         ])
         .save();
 
-    // Create or load package.json
-    pkg.appendScript('lint', 'npm run lint:js');
-    pkg.appendScript('lint:fix', 'npm run lint:js:fix');
-    pkg.setScript(
-        'lint:js',
-        'eslint --quiet --cache --no-error-on-unmatched-pattern --ext .js,.jsx,.ts,.tsx src',
-    );
-    pkg.setScript(
-        'lint:js:fix',
-        'eslint --quiet --cache --no-error-on-unmatched-pattern --fix --ext .js,.jsx,.ts,.tsx src',
-    );
-    pkg.save();
+    // Use Babel parser if the project depends on Babel
+    if (pkg.get('devDependencies.@babel/core') || pkg.get('dependencies.@babel/core')) {
+        const parser = '@babel/eslint-parser';
 
-    // Create or load .eslintrc
-    const reactEslintrc = pkg.get('eslintConfig.extends') || [];
-    const eslintrcFilename = (isReact) ? '.eslintrc-project' : '.eslintrc';
-    const eslintrc = json(eslintrcFilename);
-    // const eslintrcExtended = json('.eslintrc-extended');
-    const eslintExtends = (isReact) ?
-        [
-            ...reactEslintrc,
-            'eslint:recommended',
-            'plugin:react/recommended',
-            'plugin:jsx-a11y/strict',
-        ] :
-        [
-            'eslint:recommended',
-        ];
+        packages.push(parser);
 
-    eslintrc.merge({
-        env: {
-            browser: true,
-            node: true,
-            es6: true,
-            es2017: true,
-            es2020: true,
-        },
-        globals: {
-            window: 'readonly',
-        },
-        extends: eslintExtends,
-        rules: config.ts.rules,
-        parserOptions: {
-            ecmaVersion: 2020,
-            sourceType: 'module',
-        },
-    });
-
-    // eslintrcExtended.merge({
-    //     extends: eslintExtends,
-    // });
-
-    if (isReact) {
         eslintrc.merge({
-            rules: config.reactTs.rules,
+            parser,
+        });
+    }
+
+     // Add scripts to package.json
+     pkg.appendScript('lint', 'npm run lint:js');
+     pkg.appendScript('lint:fix', 'npm run lint:js:fix');
+
+    if (hasReact) {
+
+        // React
+        // --------------------------------
+
+        // Add necessary packages
+        packages.push('eslint-plugin-react');
+        packages.push('eslint-plugin-jsx-a11y');
+
+        // Create or load .eslintrc
+        const reactEslintrc = pkg.get('eslintConfig.extends') || [];
+        const eslintrc = json('.eslintrc-project');
+
+        eslintrc.merge({
+            env: {
+                browser: true,
+                node: true,
+                es6: true,
+                es2017: true,
+                es2020: true,
+            },
+            globals: {
+                window: 'readonly',
+            },
+            extends: [
+                ...reactEslintrc,
+                'eslint:recommended',
+                'plugin:react/recommended',
+                'plugin:jsx-a11y/strict',
+            ],
+            rules: {
+                ...eslintConfig.ts.rules,
+                ...eslintConfig.reactTs.rules,
+            },
             parserOptions: {
+                ecmaVersion: 2020,
+                sourceType: 'module',
                 ecmaFeatures: {
                     jsx: true,
                 },
@@ -105,21 +95,63 @@ function task() {
                 },
             },
         });
-    }
 
-    // Use Babel parser if the project depends on Babel
-    if (pkg.get('devDependencies.@babel/core') || pkg.get('dependencies.@babel/core')) {
-        const parser = '@babel/eslint-parser';
+        eslintrc.save();
 
-        packages.push(parser);
+        // Add scripts to package.json
+        pkg.setScript(
+            'lint:js',
+            'eslint --quiet --cache --no-error-on-unmatched-pattern --config .eslintrc-project --ext .js,.jsx,.ts,.tsx src',
+        );
+        pkg.setScript(
+            'lint:js:fix',
+            'eslint --quiet --cache --no-error-on-unmatched-pattern --fix --config .eslintrc-project --ext .js,.jsx,.ts,.tsx src',
+        );
+
+    } else {
+
+        // Default
+        // --------------------------------
+
+        // Add necessary packages
+        packages.push('eslint');
+
+        // Create or load .eslintrc
+        const eslintrc = json('.eslintrc');
 
         eslintrc.merge({
-            parser,
+            env: {
+                browser: true,
+                node: true,
+                es6: true,
+                es2017: true,
+                es2020: true,
+            },
+            globals: {
+                window: 'readonly',
+            },
+            extends: 'eslint:recommended',
+            rules: eslintConfig.ts.rules,
+            parserOptions: {
+                ecmaVersion: 2020,
+                sourceType: 'module',
+            },
         });
+
+        eslintrc.save();
+
+        // Add scripts to package.json
+        pkg.setScript(
+            'lint:js',
+            'eslint --quiet --cache --no-error-on-unmatched-pattern --ext .js,.jsx,.ts,.tsx src',
+        );
+        pkg.setScript(
+            'lint:js:fix',
+            'eslint --quiet --cache --no-error-on-unmatched-pattern --fix --ext .js,.jsx,.ts,.tsx src',
+        );
     }
 
-    eslintrc.save();
-    // eslintrcExtended.save();
+    pkg.save();
 
     // Install npm dependencies
     install(packages);

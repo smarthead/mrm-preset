@@ -6,7 +6,7 @@ const {
     install,
 } = require('mrm-core');
 
-function task() {
+function task(config) {
     const packages = [
         'stylelint',
         'stylelint-order',
@@ -14,6 +14,11 @@ function task() {
         'stylelint-config-standard',
         'stylelint-config-recommended-scss',
     ];
+
+    // Only for CSS or SCSS
+    if (config.styles !== 'css' && config.styles !== 'scss') {
+        return;
+    }
 
     // Add rules to .gitignore
     lines('.gitignore')

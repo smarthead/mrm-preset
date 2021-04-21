@@ -5,7 +5,7 @@ const {
     install,
 } = require('mrm-core');
 
-function task({ eslintPreset }) {
+function task(config) {
     // Define packages to install
     const packages = [
         'lint-staged',
@@ -14,16 +14,20 @@ function task({ eslintPreset }) {
 
     // Create or load package.json
     const pkg = packageJson();
+    const lintStaged = {
+        '*.{js,jsx,ts,tsx}': [
+            'eslint --quiet --cache --fix --config .eslintrc-extended --ext .js,.jsx,.ts,.tsx',
+        ],
+    };
+
+    if (config.styles === 'css' || config.styles === 'scss') {
+        lintStaged['*.{css,scss}'] = [
+            'stylelint --quiet --cache --fix --config .stylelintrc-extended',
+        ];
+    }
 
     pkg.merge({
-        'lint-staged': {
-            '*.{js,jsx,ts,tsx}': [
-                'eslint --quiet --cache --fix --config .eslintrc-extended --ext .js,.jsx,.ts,.tsx',
-            ],
-            '*.{css,scss}': [
-                'stylelint --quiet --cache --fix --config .stylelintrc-extended',
-            ],
-        },
+        'lint-staged': lintStaged,
     });
 
     pkg.appendScript('lint:staged', 'lint-staged');
