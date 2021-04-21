@@ -6,7 +6,7 @@ const {
     install,
 } = require('mrm-core');
 
-function task(config) {
+function task(presetConfig) {
     const packages = [
         'stylelint',
         'stylelint-order',
@@ -16,7 +16,7 @@ function task(config) {
     ];
 
     // Only for CSS or SCSS
-    if (config.styles !== 'css' && config.styles !== 'scss') {
+    if (presetConfig.styles !== 'css' && presetConfig.styles !== 'scss') {
         return;
     }
 

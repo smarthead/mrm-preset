@@ -1,15 +1,15 @@
-const eslintConfig = require('./config');
+const config = require('./config');
 const {
     json,
     packageJson,
     lines,
     install,
 } = require('mrm-core');
-const defineReact = require('../utils/detectReact.js');
+const detectReact = require('../utils/detectReact.js');
 
 function task() {
     const pkg = packageJson();
-    const hasReact = defineReact();
+    const hasReact = detectReact();
     const packages = [];
 
     // Add rules to .gitignore
@@ -75,8 +75,8 @@ function task() {
                 'plugin:jsx-a11y/strict',
             ],
             rules: {
-                ...eslintConfig.ts.rules,
-                ...eslintConfig.reactTs.rules,
+                ...config.ts.rules,
+                ...config.reactTs.rules,
             },
             parserOptions: {
                 ecmaVersion: 2020,
@@ -131,7 +131,7 @@ function task() {
                 window: 'readonly',
             },
             extends: 'eslint:recommended',
-            rules: eslintConfig.ts.rules,
+            rules: config.ts.rules,
             parserOptions: {
                 ecmaVersion: 2020,
                 sourceType: 'module',
