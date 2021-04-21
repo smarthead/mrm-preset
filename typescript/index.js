@@ -1,13 +1,9 @@
 const config = require('./config');
-const {
-    json,
-    packageJson,
-    install,
-} = require('mrm-core');
+const { json, install } = require('mrm-core');
+const detectReact = require('../utils/detectReact.js');
 
 function task() {
-    const pkg = packageJson();
-    const isReact = !!pkg.get('dependencies.react-scripts');
+    const hasReact = detectReact();
     const packages = {
         dependencies: [
             'typescript',
@@ -19,7 +15,7 @@ function task() {
     };
 
     // Create or load tsconfig.json
-    if (!isReact) {
+    if (!hasReact) {
         json('tsconfig.json')
             .merge(config)
             .save();
@@ -52,7 +48,7 @@ function task() {
         .save();
 
     // Install npm dependencies
-    if (!isReact) {
+    if (!hasReact) {
         install(packages.dependencies, { dev: false });
         install(packages.devDependencies);
     }
