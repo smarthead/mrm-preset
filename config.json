@@ -6,7 +6,7 @@
   "minNode": "12",
   "license": "MIT",
   "styles": "scss",
-  "lang": "ts",
+  "scripts": "ts",
   "template": "none",
   "aliases": {
     "default": [
