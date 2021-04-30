@@ -36,11 +36,12 @@ npx -p mrm -p @smarthead/mrm-preset@latest mrm --preset @smarthead/mrm-preset de
 
 You can pass some options. For example, you can change a style config.
 ```
-mrm --preset @smarthead/mrm-preset default --config:jss true
+mrm --preset @smarthead/mrm-preset default --config:style jss
 ```
 
 ### All parameters
-|Parameter|Type|Default|
+|Parameter|Possible values|Default|
 |:---  |:---  |:---  |
-|jss|boolean|false|
+|style|scss, jss|scss|
+
 
