@@ -40,7 +40,7 @@ mrm --preset @smarthead/mrm-preset default --config:jss true
 ```
 
 ### All parameters
-|Parameter|Possible values|Default|
+|Parameter|Type|Default|
 |:---  |:---  |:---  |
 |jss|boolean|false|
 
