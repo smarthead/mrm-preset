@@ -39,4 +39,8 @@ You can pass some options. For example, you can change a style config.
 mrm --preset @smarthead/mrm-preset default --config:style jss
 ```
 
-### All commands
+### All parameters
+|Parameter|Possible values|Default|
+|:---  |:---  |:---  |
+|style|scss, css, jss|scss|
+|scripts|js, ts|ts|
