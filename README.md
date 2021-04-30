@@ -42,6 +42,5 @@ mrm --preset @smarthead/mrm-preset default --config:style jss
 ### All parameters
 |Parameter|Possible values|Default|
 |:---  |:---  |:---  |
-|style|scss, css, jss|scss|
-|scripts|js, ts|ts|
+|style|scss, jss|scss|
 
