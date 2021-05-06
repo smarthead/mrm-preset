@@ -4,9 +4,10 @@ const {
     lines,
     install,
 } = require('mrm-core');
+const detectReact = require('../utils/detectReact.js');
 
-function task({ eslintPreset }) {
-    // Define packages to install
+function task(config) {
+    const hasReact = detectReact();
     const packages = [
         'lint-staged',
         'husky@^5.0.6',
@@ -14,16 +15,26 @@ function task({ eslintPreset }) {
 
     // Create or load package.json
     const pkg = packageJson();
+    const lintStaged = {};
+
+    if (hasReact) {
+        lintStaged['*.{js,jsx,ts,tsx}'] = [
+            'eslint --quiet --cache --fix --config .eslintrc-project --ext .js,.jsx,.ts,.tsx',
+        ];
+    } else {
+        lintStaged['*.{js,ts}'] = [
+            'eslint --quiet --cache --fix --ext .js,.ts',
+        ];
+    }
+
+    if (config.styles === 'css' || config.styles === 'scss') {
+        lintStaged['*.{css,scss}'] = [
+            'stylelint --quiet --cache --fix --config .stylelintrc-extended',
+        ];
+    }
 
     pkg.merge({
-        'lint-staged': {
-            '*.{js,jsx,ts,tsx}': [
-                'eslint --quiet --cache --fix --config .eslintrc-extended --ext .js,.jsx,.ts,.tsx',
-            ],
-            '*.{css,scss}': [
-                'stylelint --quiet --cache --fix --config .stylelintrc-extended',
-            ],
-        },
+        'lint-staged': lintStaged,
     });
 
     pkg.appendScript('lint:staged', 'lint-staged');

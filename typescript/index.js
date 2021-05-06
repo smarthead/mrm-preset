@@ -1,13 +1,9 @@
 const config = require('./config');
-const {
-    json,
-    packageJson,
-    install,
-} = require('mrm-core');
+const { json, install } = require('mrm-core');
+const detectReact = require('../utils/detectReact.js');
 
 function task() {
-    const pkg = packageJson();
-    const isReact = !!pkg.get('dependencies.react-scripts');
+    const hasReact = detectReact();
     const packages = {
         dependencies: [
             'typescript',
@@ -19,17 +15,21 @@ function task() {
     };
 
     // Create or load tsconfig.json
-    if (!isReact) {
+    if (!hasReact) {
         json('tsconfig.json')
             .merge(config)
             .save();
     }
 
     // Create or load .eslintrc
-    json('.eslintrc')
+    const eslintrcFilename = (hasReact) ? '.eslintrc-project' : '.eslintrc';
+    const eslintrc = json(eslintrcFilename);
+
+    eslintrc
         .merge({
             extends: [
                 'plugin:@typescript-eslint/recommended',
+                'plugin:@typescript-eslint/recommended-requiring-type-checking',
             ],
             parser: "@typescript-eslint/parser",
             parserOptions: {
@@ -39,20 +39,12 @@ function task() {
             plugins: [
                 '@typescript-eslint',
             ],
-        })
-        .save();
+        });
 
-    json('.eslintrc-extended')
-        .merge({
-            extends: [
-                'plugin:@typescript-eslint/recommended',
-                'plugin:@typescript-eslint/recommended-requiring-type-checking',
-            ],
-        })
-        .save();
+    eslintrc.save();
 
     // Install npm dependencies
-    if (!isReact) {
+    if (!hasReact) {
         install(packages.dependencies, { dev: false });
         install(packages.devDependencies);
     }

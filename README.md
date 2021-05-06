@@ -32,3 +32,16 @@ Running mrm with this mrm preset
 npx -p mrm -p @smarthead/mrm-preset@latest mrm --preset @smarthead/mrm-preset default
 ```
 
+## Command line parameters
+
+You can pass some options. For example, you can change a style config.
+```
+mrm --preset @smarthead/mrm-preset default --config:style jss
+```
+
+### All parameters
+|Parameter|Possible values|Default|
+|:---  |:---  |:---  |
+|style|scss, jss|scss|
+
+

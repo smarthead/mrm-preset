@@ -1,6 +1,6 @@
 const { packageJson } = require('mrm-core');
 
-function task(mrmConfig) {
+function task(config) {
     const pkg = packageJson();
     const {
         name: currentName,
@@ -20,10 +20,10 @@ function task(mrmConfig) {
         name: currentName || 'project-name',
         version: currentVersion || '0.1.0',
         description: currentDescription || '',
-        author: currentAuthor || `${mrmConfig.name} (${mrmConfig.url})`,
+        author: currentAuthor || `${config.name} (${config.url})`,
         private: currentPrivate || true,
-        license: currentLicense || mrmConfig.license,
-        engines: currentEngines || { node: `>=${mrmConfig.minNode}` },
+        license: currentLicense || config.license,
+        engines: currentEngines || { node: `>=${config.minNode}` },
         scripts: {
             start: currentScripts.start || '',
             build: currentScripts.build || '',

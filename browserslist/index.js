@@ -1,11 +1,11 @@
-const { lines, packageJson } = require('mrm-core');
+const { lines } = require('mrm-core');
+const detectReact = require('../utils/detectReact.js');
 
 function task() {
+    const hasReact = detectReact();
     const browserslistrc = lines('.browserslistrc');
-    const pkg = packageJson();
-    const isReact = !!pkg.get('dependencies.react-scripts');
 
-    if (browserslistrc.exists() || isReact) {
+    if (browserslistrc.exists() || hasReact) {
         return;
     }
 

@@ -1,18 +1,26 @@
 const config = require('./config');
-const { json, packageJson, install } = require('mrm-core');
+const { json, install } = require('mrm-core');
+const detectReact = require('../utils/detectReact.js');
 
-function task() {
+function task(presetConfig) {
+    const hasReact = detectReact();
     const packages = [
         'prettier',
         'eslint-plugin-prettier',
         'eslint-config-prettier',
-        'stylelint-prettier',
-        'stylelint-config-prettier',
     ];
 
+    // Create or load .prettierrc
+    json('.prettierrc')
+        .merge(config.js)
+        .save();
+
+    // Eslint
+    // --------------------------------
+
     // Create or load .eslintrc
-    const eslintrc = json('.eslintrc');
-    const eslintrcExtended = json('.eslintrc-extended');
+    const eslintrcFilename = (hasReact) ? '.eslintrc-project' : '.eslintrc';
+    const eslintrc = json(eslintrcFilename);
 
     eslintrc.merge({
         extends: [
@@ -26,43 +34,40 @@ function task() {
         },
     });
 
-    eslintrcExtended.merge({
-        extends: [
-            'prettier',
-        ],
-    });
-
     eslintrc.save();
-    eslintrcExtended.save();
 
-    // Create or load .stylelintrc
-    const stylelintConfig = {
-        extends: [
-            'stylelint-prettier/recommended',
-        ],
-        plugins: [
-            'stylelint-prettier',
-        ],
-        rules: {
-            'prettier/prettier': [
-                true,
-                config.css,
+    // Stylelint
+    // --------------------------------
+
+    if (presetConfig.styles === 'css' || presetConfig.styles === 'scss') {
+        // Add stylelint-prettier packages
+        packages.push('stylelint-prettier');
+        packages.push('stylelint-config-prettier');
+
+        // Create or load .stylelintrc
+        const stylelintConfig = {
+            extends: [
+                'stylelint-prettier/recommended',
             ],
-        },
-    };
+            plugins: [
+                'stylelint-prettier',
+            ],
+            rules: {
+                'prettier/prettier': [
+                    true,
+                    config.css,
+                ],
+            },
+        };
 
-    json('.stylelintrc')
-        .merge(stylelintConfig)
-        .save();
+        json('.stylelintrc')
+            .merge(stylelintConfig)
+            .save();
 
-    json('.stylelintrc-extended')
-        .merge(stylelintConfig)
-        .save();
-
-    // Create or load .prettierrc
-    json('.prettierrc')
-        .merge(config.js)
-        .save();
+        json('.stylelintrc-extended')
+            .merge(stylelintConfig)
+            .save();
+    }
 
     // Install npm dependencies
     install(packages);
