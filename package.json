@@ -20,7 +20,8 @@
   "files": [
     "config.json",
     "*/config.js",
-    "*/index.js"
+    "*/index.js",
+    "utils/**/*.js"
   ],
   "keywords": [
     "mrm",
