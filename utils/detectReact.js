@@ -2,10 +2,12 @@ const { packageJson } = require('mrm-core');
 
 function detectReact () {
     const pkg = packageJson();
+    const dependencies = pkg.get('dependencies');
+    const devDependencies = pkg.get('devDependencies');
 
     return !!(
-        pkg.get('dependencies.react-scripts') || pkg.get('dependencies.react-dom') || pkg.get('dependencies.react') ||
-        pkg.get('devDependencies.react-scripts') || pkg.get('devDependencies.react-dom') || pkg.get('devDependencies.react')
+        dependencies['react-scripts'] || dependencies['react-dom'] || dependencies['react'] ||
+        devDependencies['react-scripts'] || devDependencies['react-dom'] || devDependencies['react']
     );
 }
 
