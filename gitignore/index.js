@@ -7,9 +7,11 @@ function task() {
             '/node_modules',
             '/build',
             '/.idea',
+            '/.vscode',
             '*.local',
             '*.log',
             '*.log*',
+            '.eslintcache',
         ])
         .save();
 }
