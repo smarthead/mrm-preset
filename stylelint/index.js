@@ -16,6 +16,7 @@ function task(presetConfig) {
     ];
 
     // Only for CSS or SCSS
+    // TODO: Add CSS-in-JS
     if (presetConfig.styles !== 'css' && presetConfig.styles !== 'scss') {
         return;
     }
@@ -47,6 +48,9 @@ function task(presetConfig) {
             '/node_modules',
             '/build',
             '**/*.js',
+            '**/*.jsx',
+            '**/*.ts',
+            '**/*.tsx',
             '**/vendor/*',
             '**/*.vendor*',
         ])
