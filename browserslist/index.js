@@ -15,7 +15,7 @@ function task() {
         'not dead',
         'not op_mini all',
         'not ie 11',
-        'not chrome < 83',
+        'not chrome < 90',
         'not iOS < 12',
         'not Safari < 13',
         '',
