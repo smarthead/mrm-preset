@@ -33,6 +33,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "mrm-core": "^6.0.0"
+    "mrm-core": "^7.0.0"
   }
 }
