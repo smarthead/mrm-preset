@@ -3,14 +3,15 @@
   "email": "",
   "url": "",
   "github": "",
-  "minNode": "12",
   "license": "MIT",
+  "minNode": "16.13.0",
+  "minNpm": "8.1.0",
+
   "styles": "scss",
   "scripts": "ts",
-  "template": "none",
+
   "aliases": {
     "default": [
-      "stylelint",
       "eslint",
       "typescript",
       "prettier",
@@ -18,17 +19,15 @@
       "package"
     ],
 
-    "CRA": [
-      "editorconfig",
-      "gitignore",
-      "gitattributes"
-    ],
-
-    "Gatsby": [
+    "cra": [
       "editorconfig",
       "gitignore",
       "gitattributes",
-      "browserslist"
+      "stylelint"
+    ],
+
+    "gatsby": [
+      "stylelint"
     ]
   }
 }
