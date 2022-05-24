@@ -1,11 +1,9 @@
 const { lines } = require('mrm-core');
-const detectReact = require('../utils/detectReact.js');
 
 function task() {
-    const hasReact = detectReact();
     const browserslistrc = lines('.browserslistrc');
 
-    if (browserslistrc.exists() || hasReact) {
+    if (browserslistrc.exists()) {
         return;
     }
 

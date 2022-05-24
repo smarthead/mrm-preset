@@ -10,16 +10,25 @@
   "template": "none",
   "aliases": {
     "default": [
-      "gitignore",
-      "editorconfig",
-      "gitattributes",
-      "browserslist",
       "stylelint",
       "eslint",
       "typescript",
       "prettier",
       "lint-staged",
       "package"
+    ],
+
+    "CRA": [
+      "editorconfig",
+      "gitignore",
+      "gitattributes"
+    ],
+
+    "Gatsby": [
+      "editorconfig",
+      "gitignore",
+      "gitattributes",
+      "browserslist"
     ]
   }
 }
