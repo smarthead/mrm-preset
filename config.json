@@ -1,33 +1,34 @@
 {
-  "name": "",
-  "email": "",
-  "url": "",
-  "github": "",
-  "license": "MIT",
-  "minNode": "16",
-  "minNpm": "8",
-
   "styles": "scss",
   "scripts": "ts",
 
   "aliases": {
-    "default": [
-      "eslint",
-      "typescript",
-      "prettier",
-      "lint-staged",
+    "basic": [
+      "editorconfig",
+      "gitignore",
+      "gitattributes",
       "package"
     ],
 
     "cra": [
       "editorconfig",
       "gitignore",
-      "gitattributes",
-      "stylelint"
+      "gitattributes"
     ],
 
     "gatsby": [
-      "stylelint"
+      "editorconfig",
+      "gitignore",
+      "gitattributes"
+    ],
+
+    "other": [
+      "stylelint",
+      "eslint",
+      "typescript",
+      "prettier",
+      "lint-staged",
+      "package"
     ]
   }
 }
