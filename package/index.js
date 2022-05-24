@@ -25,12 +25,12 @@ function task({
 
     pkg.set({
         name: currentName || 'project-name',
-        version: currentVersion || '0.1.0',
+        version: currentVersion || '1.0.0',
         description: currentDescription || '',
         author: currentAuthor || `${name} (${url})`,
         private: currentPrivate || true,
         license: currentLicense || license,
-        engines: currentEngines || { node: `^${minNode}`, npm: `^${minNpm}` },
+        engines: currentEngines || { node: `>=${minNode}`, npm: `>=${minNpm}` },
         scripts: {
             start: currentScripts.start || '',
             build: currentScripts.build || '',

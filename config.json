@@ -4,8 +4,8 @@
   "url": "",
   "github": "",
   "license": "MIT",
-  "minNode": "16.13.0",
-  "minNpm": "8.1.0",
+  "minNode": "16",
+  "minNpm": "8",
 
   "styles": "scss",
   "scripts": "ts",
