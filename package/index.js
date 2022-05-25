@@ -1,15 +1,13 @@
 const { packageJson } = require('mrm-core');
 
-function task(params) {
-    const {
-        projectName,
-        version,
-        description,
-        private,
-        minNode,
-        minNpm,
-    } = params;
-
+function task({
+    projectName,
+    version,
+    description,
+    private,
+    minNode,
+    minNpm
+}) {
     const pkg = packageJson();
 
     const {

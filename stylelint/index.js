@@ -6,20 +6,21 @@ const {
     install,
 } = require('mrm-core');
 
-function task(presetConfig) {
+function task({ styleSystem }) {
     const packages = [
         'stylelint',
         'stylelint-order',
-        'stylelint-scss',
+        // 'stylelint-scss',
         'stylelint-config-standard',
-        'stylelint-config-recommended-scss',
+        // 'stylelint-config-recommended-scss',
     ];
 
-    // Only for CSS or SCSS
-    // TODO: Add CSS-in-JS
-    if (presetConfig.styles !== 'css' && presetConfig.styles !== 'scss') {
+    // TODO: Add CSS-in-JS (Styled Components, JSS, Emotion)
+    if (styleSystem === 'CSS-in-JS') {
         return;
     }
+
+    // This block only for CSS or SCSS
 
     // Add rules to .gitignore
     lines('.gitignore')
@@ -34,11 +35,11 @@ function task(presetConfig) {
         .appendScript('lint:fix', 'npm run lint:css:fix')
         .setScript(
             'lint:css',
-            'stylelint --quiet --cache --allow-empty-input \"src/**/*.{css,scss}\"',
+            'stylelint --quiet --cache --allow-empty-input \"src/**/*.{css}\"',
         )
         .setScript(
             'lint:css:fix',
-            'stylelint --quiet --cache --allow-empty-input --fix --config .stylelintrc-extended \"src/**/*.{css,scss}\"',
+            'stylelint --quiet --cache --allow-empty-input --fix --config .stylelintrc-extended \"src/**/*.{css}\"',
         )
         .save();
 
@@ -47,10 +48,6 @@ function task(presetConfig) {
         .add([
             '/node_modules',
             '/build',
-            '**/*.js',
-            '**/*.jsx',
-            '**/*.ts',
-            '**/*.tsx',
             '**/vendor/*',
             '**/*.vendor*',
         ])
@@ -60,11 +57,11 @@ function task(presetConfig) {
     json('.stylelintrc')
         .merge({
             extends: [
-                'stylelint-config-standard',
-                'stylelint-config-recommended-scss',
+                'stylelint-config-standard'//,
+                // 'stylelint-config-recommended-scss',
             ],
             plugins: [
-                'stylelint-scss',
+                // 'stylelint-scss',
             ],
             rules: config.rules.basic,
         })
@@ -74,11 +71,11 @@ function task(presetConfig) {
     json('.stylelintrc-extended')
         .merge({
             extends: [
-                'stylelint-config-standard',
-                'stylelint-config-recommended-scss',
+                'stylelint-config-standard'//,
+                // 'stylelint-config-recommended-scss',
             ],
             plugins: [
-                'stylelint-scss',
+                // 'stylelint-scss',
                 'stylelint-order',
             ],
             rules: {
@@ -92,6 +89,15 @@ function task(presetConfig) {
     install(packages);
 }
 
-module.exports.description = 'Adds stylelint';
+task.parameters = {
+    styleSystem: {
+        type: 'list',
+        message: 'Which style system will you be using?',
+        choices: ['CSS', 'SCSS', 'CSS-in-JS'],
+        default: 0,
+    },
+};
+
+task.description = 'Adds stylelint';
 
 module.exports = task;

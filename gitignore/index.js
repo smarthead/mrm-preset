@@ -11,7 +11,6 @@ function task() {
             '*.local',
             '*.log',
             '*.log*',
-            '.eslintcache',
         ])
         .save();
 }

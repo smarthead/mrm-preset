@@ -29,6 +29,10 @@
       "prettier",
       "lint-staged",
       "package"
+    ],
+
+    "test": [
+      "stylelint"
     ]
   }
 }
