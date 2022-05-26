@@ -1,4 +1,3 @@
-const config = require('./config');
 const {
     json,
     packageJson,
@@ -6,21 +5,16 @@ const {
     install,
 } = require('mrm-core');
 
-function task({ styleSystem }) {
-    const packages = [
-        'stylelint',
-        'stylelint-order',
-        // 'stylelint-scss',
-        'stylelint-config-standard',
-        // 'stylelint-config-recommended-scss',
-    ];
+const getPackages = require('./utils/getPackages');
+const getConfig = require('./utils/getConfig');
+
+const task = ({ styleSystem }) => {
+    const packages = getPackages(styleSystem);
 
     // TODO: Add CSS-in-JS (Styled Components, JSS, Emotion)
     if (styleSystem === 'CSS-in-JS') {
         return;
     }
-
-    // This block only for CSS or SCSS
 
     // Add rules to .gitignore
     lines('.gitignore')
@@ -30,16 +24,18 @@ function task({ styleSystem }) {
         .save();
 
     // Create or load package.json
+    const extensions = styleSystem === 'CSS' ? 'css' : '{css,scss}';
+
     packageJson()
         .appendScript('lint', 'npm run lint:css')
         .appendScript('lint:fix', 'npm run lint:css:fix')
         .setScript(
             'lint:css',
-            'stylelint --quiet --cache --allow-empty-input \"src/**/*.css\"',
+            `stylelint --quiet --cache --allow-empty-input \"src/**/*.${extensions}\"`,
         )
         .setScript(
             'lint:css:fix',
-            'stylelint --quiet --cache --allow-empty-input --fix --config .stylelintrc-extended \"src/**/*.css\"',
+            `stylelint --quiet --cache --allow-empty-input --fix --config .stylelintrc-extended \"src/**/*.${extensions}\"`,
         )
         .save();
 
@@ -55,37 +51,14 @@ function task({ styleSystem }) {
 
     // Create or load .stylelintrc
     json('.stylelintrc')
-        .merge({
-            extends: [
-                'stylelint-config-standard'//,
-                // 'stylelint-config-recommended-scss',
-            ],
-            // plugins: [
-                // 'stylelint-scss',
-            //],
-            rules: config.rules.basic,
-        })
+        .merge(getConfig(styleSystem))
         .save();
 
-    // Create or load .stylelint-extended
     json('.stylelintrc-extended')
-        .merge({
-            extends: [
-                'stylelint-config-standard'//,
-                // 'stylelint-config-recommended-scss',
-            ],
-            plugins: [
-                // 'stylelint-scss',
-                'stylelint-order',
-            ],
-            rules: {
-                ...config.rules.basic,
-                ...config.rules.extended,
-            },
-        })
+        .merge(getConfig(styleSystem, true))
         .save();
 
-    // Install npm dependencies
+    // Install packages
     install(packages);
 }
 
