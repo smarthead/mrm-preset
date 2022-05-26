@@ -1,7 +1,4 @@
 {
-  "styles": "scss",
-  "scripts": "ts",
-
   "aliases": {
     "basic": [
       "editorconfig",
@@ -13,25 +10,27 @@
     "cra": [
       "editorconfig",
       "gitignore",
-      "gitattributes"
-    ],
-
-    "gatsby": [
-      "editorconfig",
-      "gitignore",
-      "gitattributes"
-    ],
-
-    "other": [
+      "gitattributes",
       "stylelint",
-      "eslint",
-      "typescript",
-      "prettier",
-      "lint-staged",
       "package"
     ],
 
-    "test": [
+    "react": [
+      "editorconfig",
+      "gitignore",
+      "gitattributes",
+      "stylelint",
+      "package"
+    ],
+
+    "other": [
+      "eslint",
+      "typescript",
+      "prettier",
+      "lint-staged"
+    ],
+
+    "develop": [
       "stylelint"
     ]
   }

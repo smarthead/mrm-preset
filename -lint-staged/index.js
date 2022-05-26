@@ -4,7 +4,7 @@ const {
     lines,
     install,
 } = require('mrm-core');
-const detectReact = require('../utils/detectReact.js');
+const detectReact = require('../-utils/detectReact.js');
 
 function task(config) {
     const hasReact = detectReact();
