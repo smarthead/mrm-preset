@@ -35,11 +35,11 @@ function task({ styleSystem }) {
         .appendScript('lint:fix', 'npm run lint:css:fix')
         .setScript(
             'lint:css',
-            'stylelint --quiet --cache --allow-empty-input \"src/**/*.{css}\"',
+            'stylelint --quiet --cache --allow-empty-input \"src/**/*.css\"',
         )
         .setScript(
             'lint:css:fix',
-            'stylelint --quiet --cache --allow-empty-input --fix --config .stylelintrc-extended \"src/**/*.{css}\"',
+            'stylelint --quiet --cache --allow-empty-input --fix --config .stylelintrc-extended \"src/**/*.css\"',
         )
         .save();
 
@@ -60,9 +60,9 @@ function task({ styleSystem }) {
                 'stylelint-config-standard'//,
                 // 'stylelint-config-recommended-scss',
             ],
-            plugins: [
+            // plugins: [
                 // 'stylelint-scss',
-            ],
+            //],
             rules: config.rules.basic,
         })
         .save();
