@@ -1,6 +1,6 @@
 const { ini } = require('mrm-core');
 
-function task() {
+const task = () => {
     ini('.editorconfig', 'editorconfig.org')
         .set('_global', { root: true })
         .set('*', {

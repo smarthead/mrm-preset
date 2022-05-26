@@ -1,6 +1,6 @@
 const { lines } = require('mrm-core');
 
-function task() {
+const task = () => {
     const browserslistrc = lines('.browserslistrc');
 
     if (browserslistrc.exists()) {
@@ -26,6 +26,6 @@ function task() {
     browserslistrc.save();
 }
 
-module.exports.description = 'Adds browserslist';
+task.description = 'Adds browserslist';
 
 module.exports = task;
