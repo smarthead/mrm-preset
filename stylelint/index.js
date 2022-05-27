@@ -5,13 +5,23 @@ const {
     install,
 } = require('mrm-core');
 
-const getPackages = require('./utils/getPackages');
 const getConfig = require('./utils/getConfig');
 
 const task = ({ styleSystem }) => {
-    const packages = getPackages(styleSystem);
-
-    console.log(styleSystem);
+    const packages = {
+        CSS: [
+            'stylelint',
+            'stylelint-order',
+            'stylelint-config-standard',
+        ],
+        SCSS: [
+            'stylelint',
+            'stylelint-order',
+            'stylelint-scss',
+            'stylelint-config-standard',
+            'stylelint-config-recommended-scss',
+        ]
+    };
 
     // TODO: Add CSS-in-JS (Styled Components, JSS, Emotion)
     if (styleSystem === 'CSS-in-JS') {
@@ -61,7 +71,7 @@ const task = ({ styleSystem }) => {
         .save();
 
     // Install packages
-    install(packages);
+    install(packages[styleSystem]);
 }
 
 task.parameters = {

@@ -25,13 +25,8 @@
 
     "other": [
       "eslint",
-      "typescript",
       "prettier",
       "lint-staged"
-    ],
-
-    "develop": [
-      "stylelint"
     ]
   }
 }
