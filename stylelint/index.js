@@ -11,6 +11,8 @@ const getConfig = require('./utils/getConfig');
 const task = ({ styleSystem }) => {
     const packages = getPackages(styleSystem);
 
+    console.log(styleSystem);
+
     // TODO: Add CSS-in-JS (Styled Components, JSS, Emotion)
     if (styleSystem === 'CSS-in-JS') {
         return;
@@ -67,7 +69,7 @@ task.parameters = {
         type: 'list',
         message: 'Which style system will you be using?',
         choices: ['CSS', 'SCSS', 'CSS-in-JS'],
-        default: 0,
+        default: 'CSS',
     },
 };
 
