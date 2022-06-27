@@ -10,6 +10,7 @@ const task = () => {
             end_of_line: 'lf',
             insert_final_newline: true,
             trim_trailing_whitespace: true,
+            max_line_length: 120,
         })
         .set('*.{json,yml,md,babelrc}', {
             indent_size: 2,
