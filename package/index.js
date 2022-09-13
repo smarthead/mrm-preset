@@ -27,7 +27,7 @@ const task = ({
         version: currentVersion || version,
         description: currentDescription || description,
         private: currentPrivate || private,
-        engines: currentEngines || { node: `>=${minNode}`, npm: `>=${minNpm}` },
+        engines: currentEngines || { node: `^${minNode}`, npm: `^${minNpm}` },
         scripts: {
             start: currentScripts.start || '',
             build: currentScripts.build || '',

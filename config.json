@@ -1,26 +1,26 @@
 {
   "aliases": {
     "basic": [
+      "package",
       "editorconfig",
       "gitignore",
-      "gitattributes",
-      "package"
+      "gitattributes"
     ],
 
     "cra": [
+      "package",
       "editorconfig",
       "gitignore",
       "gitattributes",
-      "stylelint",
-      "package"
+      "stylelint"
     ],
 
     "react": [
+      "package",
       "editorconfig",
       "gitignore",
       "gitattributes",
-      "stylelint",
-      "package"
+      "stylelint"
     ],
 
     "other": [

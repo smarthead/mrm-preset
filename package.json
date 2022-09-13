@@ -14,7 +14,7 @@
   "private": false,
   "license": "MIT",
   "engines": {
-    "node": ">=12"
+    "node": "^16"
   },
   "main": "config.json",
   "files": [
@@ -33,6 +33,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "mrm-core": "^7.0.0"
+    "mrm-core": "^7.1.0"
   }
 }
