@@ -1,7 +1,7 @@
 const { ini } = require('mrm-core');
 
 const task = () => {
-    ini('.editorconfig', 'editorconfig.org')
+    ini('.editorconfig')
         .set('_global', { root: true })
         .set('*', {
             charset: 'utf-8',

@@ -4,18 +4,20 @@
       "package",
       "editorconfig",
       "gitignore",
-      "gitattributes"
+      "gitattributes",
+      "browserslist"
     ],
 
-    "cra": [
+    "react": [
       "package",
       "editorconfig",
       "gitignore",
       "gitattributes",
+      "browserslist",
       "stylelint"
     ],
 
-    "react": [
+    "cra": [
       "package",
       "editorconfig",
       "gitignore",
