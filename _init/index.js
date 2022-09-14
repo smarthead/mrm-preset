@@ -9,7 +9,7 @@ const task = (params) => {
         .save();
 }
 
-task.description = 'Inits mrm preset';
+task.description = 'Adds mrm config file';
 
 task.parameters = {
     projectName: {

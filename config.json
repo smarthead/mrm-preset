@@ -6,16 +6,16 @@
       "editorconfig",
       "gitignore",
       "gitattributes",
+      "browserslist",
       "_clean"
     ],
 
-    "other": [
+    "_": [
       "_init",
       "package",
       "editorconfig",
       "gitignore",
       "gitattributes",
-      "browserslist",
       "stylelint",
       "typescript",
       "_clean"

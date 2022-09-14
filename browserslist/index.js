@@ -1,9 +1,10 @@
-const { lines } = require('mrm-core');
+const { json, lines } = require('mrm-core');
 
 const task = () => {
+    const { jsFrameworks } = json('.mrm.config.json').get();
     const browserslistrc = lines('.browserslistrc');
 
-    if (browserslistrc.exists()) {
+    if (jsFrameworks === 'Create React App' || browserslistrc.exists()) {
         return;
     }
 
