@@ -7,7 +7,9 @@ const {
 
 const getConfig = require('./utils/getConfig');
 
-const task = ({ styleSystem }) => {
+const task = () => {
+    const { styleSystem } = json('.mrm.config.json').get();
+
     const packages = {
         CSS: [
             'stylelint',
@@ -73,15 +75,6 @@ const task = ({ styleSystem }) => {
     // Install packages
     install(packages[styleSystem]);
 }
-
-task.parameters = {
-    styleSystem: {
-        type: 'list',
-        message: 'Which style system will you be using?',
-        choices: ['CSS', 'SCSS', 'CSS-in-JS'],
-        default: 'CSS',
-    },
-};
 
 task.description = 'Adds stylelint';
 
