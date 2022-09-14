@@ -1,46 +1,24 @@
 {
   "aliases": {
-    "basic:light": [
-      "package",
-      "editorconfig",
-      "gitignore",
-      "gitattributes",
-      "browserslist"
-    ],
-
     "basic": [
+      "_init",
       "package",
       "editorconfig",
       "gitignore",
       "gitattributes",
-      "browserslist",
-      "stylelint",
-      "typescript"
-    ],
-
-    "react": [
-      "package",
-      "editorconfig",
-      "gitignore",
-      "gitattributes",
-      "browserslist",
-      "stylelint",
-      "typescript"
-    ],
-
-    "cra": [
-      "package",
-      "editorconfig",
-      "gitignore",
-      "gitattributes",
-      "stylelint",
-      "typescript"
+      "_clean"
     ],
 
     "other": [
-      "eslint",
-      "prettier",
-      "lint-staged"
+      "_init",
+      "package",
+      "editorconfig",
+      "gitignore",
+      "gitattributes",
+      "browserslist",
+      "stylelint",
+      "typescript",
+      "_clean"
     ]
   }
 }
