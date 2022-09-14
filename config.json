@@ -8,17 +8,6 @@
       "gitattributes",
       "browserslist",
       "_clean"
-    ],
-
-    "_": [
-      "_init",
-      "package",
-      "editorconfig",
-      "gitignore",
-      "gitattributes",
-      "stylelint",
-      "typescript",
-      "_clean"
     ]
   }
 }
