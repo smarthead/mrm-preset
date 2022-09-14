@@ -1,11 +1,21 @@
 {
   "aliases": {
-    "basic": [
+    "basic:light": [
       "package",
       "editorconfig",
       "gitignore",
       "gitattributes",
       "browserslist"
+    ],
+
+    "basic": [
+      "package",
+      "editorconfig",
+      "gitignore",
+      "gitattributes",
+      "browserslist",
+      "stylelint",
+      "typescript"
     ],
 
     "react": [
@@ -14,7 +24,8 @@
       "gitignore",
       "gitattributes",
       "browserslist",
-      "stylelint"
+      "stylelint",
+      "typescript"
     ],
 
     "cra": [
@@ -22,7 +33,8 @@
       "editorconfig",
       "gitignore",
       "gitattributes",
-      "stylelint"
+      "stylelint",
+      "typescript"
     ],
 
     "other": [

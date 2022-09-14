@@ -57,7 +57,7 @@ const task = ({ styleSystem }) => {
             '/node_modules',
             '/build',
             '**/vendor/*',
-            '**/*.vendor*',
+            '**/*.vendor.*',
         ])
         .save();
 

@@ -1,9 +1,11 @@
 const config = require('./config');
 const { json, install } = require('mrm-core');
 
-const task = ({
-    
-}, task) => {
+const task = ({ typescript }, task) => {
+    if (typescript === 'No') {
+        return;
+    }
+
     const packages = {
         dependencies: [
             'typescript',
@@ -14,10 +16,10 @@ const task = ({
         ],
     };
 
-    const hasReact = task._[0] === 'react' || task._[0] === 'cra' || false;
+    const isReactProject = task._[0] === 'react' || task._[0] === 'cra' || false;
 
     // Create or load tsconfig.json
-    if (!hasReact) {
+    if (!isReactProject) {
         json('tsconfig.json')
             .merge(config)
             .save();
@@ -51,6 +53,15 @@ const task = ({
     //     install(packages.devDependencies);
     // }
 }
+
+task.parameters = {
+    typescript: {
+        type: 'list',
+        message: 'Are you going to use TypeScript?',
+        choices: ['Yes', 'No'],
+        default: 'Yes',
+    },
+};
 
 task.description = 'Adds typescript';
 

@@ -8,7 +8,7 @@ const config = {
 
         'strict': true,                                 /* Enable all strict type-checking options. */
         // 'rootDir': './',                             /* Specify the root folder within your source files. */
-        // 'baseUrl': './'                              /* Specify the base directory to resolve non-relative module names. */
+        'baseUrl': '.',                                 /* Specify the base directory to resolve non-relative module names. */
         'esModuleInterop': true,                        /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
         'forceConsistentCasingInFileNames': true,       /* Disallow inconsistently-cased references to the same file. */
         'skipLibCheck': true,                           /* Skip type checking of declaration files. */
@@ -17,7 +17,7 @@ const config = {
     },
 
     include: [
-        'src/**/*',
+        '**/*.ts',
     ],
 
     exclude: [
