@@ -8,6 +8,7 @@
       "gitattributes",
       "browserslist",
       "stylelint",
+      "typescript",
       "_clean"
     ]
   }

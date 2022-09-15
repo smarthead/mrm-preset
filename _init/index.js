@@ -49,7 +49,7 @@ task.parameters = {
         default: 'CSS',
     },
 
-    jsFrameworks: {
+    jsFramework: {
         type: 'list',
         message: 'Which JS frameworks or libraries are you going to use?',
         choices: ['None', 'React', 'Create React App', 'Next.js', 'Other'],
