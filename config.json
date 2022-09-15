@@ -1,6 +1,6 @@
 {
   "aliases": {
-    "basic": [
+    "default": [
       "_init",
       "package",
       "editorconfig",
@@ -9,6 +9,7 @@
       "browserslist",
       "stylelint",
       "typescript",
+      "lint-staged",
       "_clean"
     ]
   }
