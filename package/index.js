@@ -1,14 +1,8 @@
 const { json, packageJson } = require('mrm-core');
 
 const task = () => {
-    const {
-        projectName,
-        version,
-        description,
-        private,
-        minNode,
-        minNpm,
-    } = json('.mrm.config.json').get();
+    const { projectName, version, description, private, minNode, minNpm } =
+        json('.mrm.config.json').get();
 
     const pkg = packageJson();
 
@@ -44,7 +38,7 @@ const task = () => {
     });
 
     pkg.save();
-}
+};
 
 task.description = 'Adds package.json';
 

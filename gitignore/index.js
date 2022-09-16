@@ -13,7 +13,7 @@ const task = () => {
             '*.log*',
         ])
         .save();
-}
+};
 
 task.description = 'Adds .gitignore';
 

@@ -9,14 +9,16 @@ const getConfig = (styleSystem, extended = false) => {
     return {
         extends: [
             'stylelint-config-standard',
-            ...(styleSystem === 'SCSS' ? ['stylelint-config-recommended-scss'] : []),
+            ...(styleSystem === 'SCSS'
+                ? ['stylelint-config-recommended-scss']
+                : []),
         ],
 
         ...(plugins.length > 0 ? { plugins } : {}),
 
         rules: {
             ...config.rules.basic,
-            ...(extended ? {...config.rules.extended} : {}),
+            ...(extended ? { ...config.rules.extended } : {}),
         },
     };
 };

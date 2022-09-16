@@ -19,7 +19,7 @@ const task = () => {
             trim_trailing_whitespace: false,
         })
         .save();
-}
+};
 
 task.description = 'Adds .editorconfig';
 

@@ -25,7 +25,7 @@ const task = () => {
     ]);
 
     browserslistrc.save();
-}
+};
 
 task.description = 'Adds browserslist';
 
