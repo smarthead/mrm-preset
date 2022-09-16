@@ -4,27 +4,30 @@ const task = (params) => {
     json('.mrm.config.json')
         .merge({
             ...params,
-            projectName: (params.projectName || '').replace(/\s+/g, '-').toLowerCase(),
+            projectName: (params.projectName || '')
+                .replace(/\s+/g, '-')
+                .toLowerCase(),
         })
         .save();
-}
+};
 
 task.description = 'Adds mrm config file';
 
 task.parameters = {
     projectName: {
         type: 'input',
-        message: 'Project name (one lowercase word, may contain hyphens and underscores):',
+        message:
+            'Project name (one lowercase word, may contain hyphens and underscores):',
     },
 
     version: {
         type: 'config',
-        default: '0.1.0'
+        default: '0.1.0',
     },
 
     description: {
         type: 'config',
-        default: ''
+        default: '',
     },
 
     private: {
