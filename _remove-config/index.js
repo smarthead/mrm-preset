@@ -4,6 +4,6 @@ const task = () => {
     json('.mrm.config.json').delete();
 };
 
-task.description = 'Deletes temporary files';
+task.description = 'Removes temporary files';
 
 module.exports = task;

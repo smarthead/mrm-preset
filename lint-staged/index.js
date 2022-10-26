@@ -72,8 +72,7 @@ function task() {
     // Install npm dependencies
     install(packages);
 
-    // Init Husky (for Husky 5+) and add a pre-commit hook
-    // TODO: Check it on different platforms
+    // Init Husky and add pre-commit hook
     if (!lines('.husky/pre-commit').exists()) {
         console.log('Installs husky and git hooks...\n');
 

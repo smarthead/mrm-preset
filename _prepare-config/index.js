@@ -11,7 +11,7 @@ const task = (params) => {
         .save();
 };
 
-task.description = 'Adds mrm config file';
+task.description = 'Adds temporary files';
 
 task.parameters = {
     projectName: {
