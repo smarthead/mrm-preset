@@ -1,7 +1,7 @@
 {
   "aliases": {
     "default": [
-      "_init",
+      "_prepare-config",
       "package",
       "editorconfig",
       "gitignore",
@@ -10,7 +10,7 @@
       "stylelint",
       "typescript",
       "lint-staged",
-      "_clean"
+      "_remove-config"
     ]
   }
 }
