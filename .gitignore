@@ -2,6 +2,9 @@
 /node_modules
 /build
 /.idea
+/.vscode
 *.local
 *.log
 *.log*
+.eslintcache
+.DS_Store

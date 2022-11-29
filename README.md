@@ -2,10 +2,6 @@
 
 SmartHead preset for [Mrm](https://mrm.js.org)
 
-Mrm Preset supports 
-* TypeScript applications
-* Applications based on [Create React App](https://create-react-app.dev) (TypeScript)
-
 This preset includes the following Mrm tasks
  ```
 package
@@ -14,9 +10,7 @@ editorconfig
 gitattributes
 browserslist
 stylelint
-eslint
 typescript
-prettier
 lint-staged
  ```
 
@@ -29,19 +23,7 @@ git init
 
 Running mrm with this mrm preset
 ```
-npx -p mrm -p @smarthead/mrm-preset@latest mrm --preset @smarthead/mrm-preset default
+npx -p mrm -p @smarthead/mrm-preset@latest mrm --preset @smarthead/mrm-preset default -i
 ```
-
-## Command line parameters
-
-You can pass some options. For example, you can change a style config.
-```
-mrm --preset @smarthead/mrm-preset default --config:style jss
-```
-
-### All parameters
-|Parameter|Possible values|Default|
-|:---  |:---  |:---  |
-|style|scss, jss|scss|
 
 

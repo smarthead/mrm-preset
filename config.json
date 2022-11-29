@@ -1,25 +1,16 @@
 {
-  "name": "",
-  "email": "",
-  "url": "",
-  "github": "",
-  "minNode": "12",
-  "license": "MIT",
-  "styles": "scss",
-  "scripts": "ts",
-  "template": "none",
   "aliases": {
     "default": [
-      "gitignore",
+      "_prepare-config",
+      "package",
       "editorconfig",
+      "gitignore",
       "gitattributes",
       "browserslist",
       "stylelint",
-      "eslint",
       "typescript",
-      "prettier",
       "lint-staged",
-      "package"
+      "_remove-config"
     ]
   }
 }

@@ -1,11 +1,10 @@
-const { lines } = require('mrm-core');
-const detectReact = require('../utils/detectReact.js');
+const { json, lines } = require('mrm-core');
 
-function task() {
-    const hasReact = detectReact();
+const task = () => {
+    const { jsFramework } = json('.mrm.config.json').get();
     const browserslistrc = lines('.browserslistrc');
 
-    if (browserslistrc.exists() || hasReact) {
+    if (jsFramework === 'Create React App' || browserslistrc.exists()) {
         return;
     }
 
@@ -15,7 +14,7 @@ function task() {
         'not dead',
         'not op_mini all',
         'not ie 11',
-        'not chrome < 83',
+        'not chrome < 90',
         'not iOS < 12',
         'not Safari < 13',
         '',
@@ -26,8 +25,8 @@ function task() {
     ]);
 
     browserslistrc.save();
-}
+};
 
-module.exports.description = 'Adds browserslist';
+task.description = 'Adds browserslist';
 
 module.exports = task;

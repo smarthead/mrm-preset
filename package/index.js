@@ -1,43 +1,44 @@
-const { packageJson } = require('mrm-core');
+const { json, packageJson } = require('mrm-core');
 
-function task(config) {
+const task = () => {
+    const { projectName, version, description, private, minNode, minNpm } =
+        json('.mrm.config.json').get();
+
     const pkg = packageJson();
+
     const {
         name: currentName,
         version: currentVersion,
         description: currentDescription,
-        author: currentAuthor,
         private: currentPrivate,
-        license: currentLicense,
         engines: currentEngines,
         scripts: currentScripts = {},
         dependencies: currentDependencies,
         devDependencies: currentDevDependencies,
-        ...otherCurrentValues
+        ...otherCurrentProps
     } = pkg.get();
 
     pkg.set({
-        name: currentName || 'project-name',
-        version: currentVersion || '0.1.0',
-        description: currentDescription || '',
-        author: currentAuthor || `${config.name} (${config.url})`,
-        private: currentPrivate || true,
-        license: currentLicense || config.license,
-        engines: currentEngines || { node: `>=${config.minNode}` },
+        name: projectName || currentName || 'new-project',
+        version: currentVersion || version,
+        description: currentDescription || description,
+        private: currentPrivate || private,
+        engines: currentEngines || { node: `^${minNode}`, npm: `^${minNpm}` },
         scripts: {
             start: currentScripts.start || '',
             build: currentScripts.build || '',
-            'build:prod': currentScripts['build:prod'] || '',
-            'build:stage': currentScripts['build:stage'] || '',
+            'build:development': '',
+            'build:stage': '',
+            'build:production': '',
             ...currentScripts,
         },
         dependencies: currentDependencies || {},
         devDependencies: currentDevDependencies || {},
-        ...otherCurrentValues,
+        ...otherCurrentProps,
     });
 
     pkg.save();
-}
+};
 
 task.description = 'Adds package.json';
 

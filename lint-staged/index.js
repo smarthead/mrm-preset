@@ -1,55 +1,80 @@
 const { exec } = require('child_process');
-const {
-    packageJson,
-    lines,
-    install,
-} = require('mrm-core');
-const detectReact = require('../utils/detectReact.js');
+const { packageJson, lines, install, json } = require('mrm-core');
 
-function task(config) {
-    const hasReact = detectReact();
-    const packages = [
-        'lint-staged',
-        'husky@^5.0.6',
-    ];
+function task() {
+    const { styleSystem, jsFramework, typescript } =
+        json('.mrm.config.json').get();
 
-    // Create or load package.json
-    const pkg = packageJson();
+    const packages = ['lint-staged', 'husky'];
+
+    const isReactApp =
+        jsFramework === 'React' ||
+        jsFramework === 'Create React App' ||
+        jsFramework === 'Next.js';
+    const isTypeScript = typescript === 'Yes';
+
     const lintStaged = {};
 
-    if (hasReact) {
-        lintStaged['*.{js,jsx,ts,tsx}'] = [
-            'eslint --quiet --cache --fix --config .eslintrc-project --ext .js,.jsx,.ts,.tsx',
-        ];
-    } else {
-        lintStaged['*.{js,ts}'] = [
-            'eslint --quiet --cache --fix --ext .js,.ts',
-        ];
+    // ESLint
+    const eslintExtensions = ['js'];
+
+    if (isReactApp) {
+        eslintExtensions.push('jsx');
     }
 
-    if (config.styles === 'css' || config.styles === 'scss') {
-        lintStaged['*.{css,scss}'] = [
+    if (isTypeScript) {
+        eslintExtensions.push('ts');
+
+        if (isReactApp) {
+            eslintExtensions.push('tsx');
+        }
+    }
+
+    const eslintPattern =
+        eslintExtensions.length > 1
+            ? '*.{' + eslintExtensions.join() + '}'
+            : '*.' + eslintExtensions[0];
+
+    lintStaged[eslintPattern] = [
+        'eslint --quiet --cache --fix --ext .' + eslintExtensions.join(',.'),
+    ];
+
+    // Stylelint
+    if (styleSystem === 'CSS' || styleSystem === 'SCSS') {
+        const stylelintPattern =
+            styleSystem === 'SCSS' ? '*.{css,scss}' : '*.css';
+
+        lintStaged[stylelintPattern] = [
             'stylelint --quiet --cache --fix --config .stylelintrc-extended',
         ];
     }
+
+    // Create or load package.json
+    const pkg = packageJson();
 
     pkg.merge({
         'lint-staged': lintStaged,
     });
 
     pkg.appendScript('lint:staged', 'lint-staged');
-    pkg.appendScript('husky:install', 'husky install .husky');
-    pkg.appendScript('husky:add', 'husky add .husky/pre-commit \"npm run lint:staged\"');
-    pkg.appendScript('husky:uninstall', 'npx rimraf .husky');
+    pkg.appendScript('husky:install', 'npx husky install .husky');
+    pkg.appendScript(
+        'husky:add',
+        'npx husky add .husky/pre-commit "npm run lint:staged" && git add .husky/pre-commit',
+    );
+    pkg.appendScript(
+        'husky:uninstall',
+        'npm uninstall husky && git config --unset core.hooksPath && npx rimraf .husky',
+    );
 
     pkg.save();
 
     // Install npm dependencies
     install(packages);
 
-    // Init Husky (for Husky 5+) and add a pre-commit hook
+    // Init Husky and add pre-commit hook
     if (!lines('.husky/pre-commit').exists()) {
-        console.log('Installing Husky and git hooks...\n');
+        console.log('Installs husky and git hooks...\n');
 
         exec(
             'npm run husky:install && npm run husky:add',
@@ -66,6 +91,6 @@ function task(config) {
     }
 }
 
-module.exports.description = 'Adds lint-staged and husky';
+module.exports.description = 'Adds husky and lint-staged';
 
 module.exports = task;
