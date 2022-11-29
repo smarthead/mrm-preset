@@ -21,7 +21,7 @@
     "config.json",
     "*/config.js",
     "*/index.js",
-    "utils/**/*.js"
+    "*/utils/*.js"
   ],
   "keywords": [
     "mrm",
