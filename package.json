@@ -30,7 +30,7 @@
         "smarthead"
     ],
     "scripts": {
-        "prettier": "prettier --write .",
+        "lint:fix": "prettier --write .",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
