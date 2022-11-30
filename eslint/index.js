@@ -1,10 +1,5 @@
 const config = require('./config');
-const {
-    json,
-    packageJson,
-    lines,
-    install,
-} = require('mrm-core');
+const { json, packageJson, lines, install } = require('mrm-core');
 
 function task() {
     const { jsFramework, typescript } = json('.mrm.config.json').get();
@@ -24,16 +19,8 @@ function task() {
 
     // Create or load .eslintignore, and set basic ignores
     lines('.eslintignore')
-        .add([
-            '/node_modules',
-            '/build',
-            '**/vendor/*',
-            '**/*.vendor.*',
-        ])
+        .add(['/node_modules', '/build', '**/vendor/*', '**/*.vendor.*'])
         .save();
-
-
-
 
     /*
 

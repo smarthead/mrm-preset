@@ -26,12 +26,7 @@ const task = () => {
 
     // Create or load .stylelintignore, and set basic ignores
     lines('.stylelintignore')
-        .add([
-            '/node_modules',
-            '/build',
-            '**/vendor/*',
-            '**/*.vendor.*'
-        ])
+        .add(['/node_modules', '/build', '**/vendor/*', '**/*.vendor.*'])
         .save();
 
     // Create or load package.json

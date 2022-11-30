@@ -55,7 +55,14 @@ task.parameters = {
     jsFramework: {
         type: 'list',
         message: 'Which JS frameworks or libraries are you going to use?',
-        choices: ['None', 'React', 'Create React App', 'Next.js', 'Gatsby', 'Other'],
+        choices: [
+            'None',
+            'React',
+            'Create React App',
+            'Next.js',
+            'Gatsby',
+            'Other',
+        ],
         default: 'None',
     },
 

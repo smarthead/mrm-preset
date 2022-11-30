@@ -2,7 +2,7 @@ const config = {
     ts: {
         rules: {
             curly: 2,
-            "@typescript-eslint/no-explicit-any": 0,
+            '@typescript-eslint/no-explicit-any': 0,
         },
     },
     reactTs: {

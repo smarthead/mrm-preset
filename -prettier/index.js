@@ -11,24 +11,18 @@ function task(presetConfig) {
     ];
 
     // Create or load .prettierrc
-    json('.prettierrc')
-        .merge(config.js)
-        .save();
+    json('.prettierrc').merge(config.js).save();
 
     // Eslint
     // --------------------------------
 
     // Create or load .eslintrc
-    const eslintrcFilename = (hasReact) ? '.eslintrc-project' : '.eslintrc';
+    const eslintrcFilename = hasReact ? '.eslintrc-project' : '.eslintrc';
     const eslintrc = json(eslintrcFilename);
 
     eslintrc.merge({
-        extends: [
-            'prettier',
-        ],
-        plugins: [
-            'prettier',
-        ],
+        extends: ['prettier'],
+        plugins: ['prettier'],
         rules: {
             'prettier/prettier': 2,
         },
@@ -46,27 +40,16 @@ function task(presetConfig) {
 
         // Create or load .stylelintrc
         const stylelintConfig = {
-            extends: [
-                'stylelint-prettier/recommended',
-            ],
-            plugins: [
-                'stylelint-prettier',
-            ],
+            extends: ['stylelint-prettier/recommended'],
+            plugins: ['stylelint-prettier'],
             rules: {
-                'prettier/prettier': [
-                    true,
-                    config.css,
-                ],
+                'prettier/prettier': [true, config.css],
             },
         };
 
-        json('.stylelintrc')
-            .merge(stylelintConfig)
-            .save();
+        json('.stylelintrc').merge(stylelintConfig).save();
 
-        json('.stylelintrc-extended')
-            .merge(stylelintConfig)
-            .save();
+        json('.stylelintrc-extended').merge(stylelintConfig).save();
     }
 
     // Install npm dependencies

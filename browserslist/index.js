@@ -1,10 +1,12 @@
-const { json, lines } = require('mrm-core');
+const { lines, packageJson } = require('mrm-core');
 
 const task = () => {
-    const { jsFramework } = json('.mrm.config.json').get();
     const browserslistrc = lines('.browserslistrc');
+    const pkg = packageJson();
 
-    if (jsFramework === 'Create React App' || browserslistrc.exists()) {
+    const { browserslist: pkgBrowserslist } = pkg.get();
+
+    if (browserslistrc.exists() || pkgBrowserslist) {
         return;
     }
 

@@ -1,16 +1,16 @@
 {
-  "aliases": {
-    "default": [
-      "_prepare-config",
-      "package",
-      "editorconfig",
-      "gitignore",
-      "gitattributes",
-      "browserslist",
-      "stylelint",
-      "typescript",
-      "lint-staged",
-      "_remove-config"
-    ]
-  }
+    "aliases": {
+        "default": [
+            "_prepare-config",
+            "package",
+            "editorconfig",
+            "gitignore",
+            "gitattributes",
+            "browserslist",
+            "stylelint",
+            "typescript",
+            "lint-staged",
+            "_remove-config"
+        ]
+    }
 }

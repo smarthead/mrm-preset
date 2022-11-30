@@ -3,13 +3,13 @@ const { json, packageJson } = require('mrm-core');
 const task = () => {
     const { projectName, version, description, private, minNode, minNpm } =
         json('.mrm.config.json').get();
-
     const pkg = packageJson();
 
     const {
         name: currentName,
         version: currentVersion,
         description: currentDescription,
+        author: currentAuthor,
         private: currentPrivate,
         engines: currentEngines,
         scripts: currentScripts = {},
@@ -22,6 +22,7 @@ const task = () => {
         name: projectName || currentName || 'new-project',
         version: currentVersion || version,
         description: currentDescription || description,
+        ...(currentAuthor && { author: currentAuthor }),
         private: currentPrivate || private,
         engines: currentEngines || { node: `^${minNode}`, npm: `^${minNpm}` },
         scripts: {
