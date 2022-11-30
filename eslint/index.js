@@ -5,19 +5,22 @@ const {
     lines,
     install,
 } = require('mrm-core');
-const detectReact = require('../utils/detectReact.js');
 
 function task() {
-    const pkg = packageJson();
-    const hasReact = detectReact();
+    const { jsFramework, typescript } = json('.mrm.config.json').get();
+
     const packages = [];
 
+    const isReactApp =
+        jsFramework === 'React' ||
+        jsFramework === 'Create React App' ||
+        jsFramework === 'Next.js';
+    const isTypeScript = typescript === 'Yes';
+
+    const pkg = packageJson();
+
     // Add rules to .gitignore
-    lines('.gitignore')
-        .add([
-            '.eslintcache',
-        ])
-        .save();
+    lines('.gitignore').add(['.eslintcache']).save();
 
     // Create or load .eslintignore, and set basic ignores
     lines('.eslintignore')
@@ -25,9 +28,14 @@ function task() {
             '/node_modules',
             '/build',
             '**/vendor/*',
-            '**/*.vendor*',
+            '**/*.vendor.*',
         ])
         .save();
+
+
+
+
+    /*
 
     // Use Babel parser if the project depends on Babel
     if (pkg.get('devDependencies.@babel/core') || pkg.get('dependencies.@babel/core')) {
@@ -155,6 +163,7 @@ function task() {
 
     // Install npm dependencies
     install(packages);
+    */
 }
 
 module.exports.description = 'Adds eslint';

@@ -8,6 +8,7 @@ const task = () => {
     const hasTypeScriptConfig =
         jsFramework === 'Create React App' ||
         jsFramework === 'Next.js' ||
+        jsFramework === 'Gatsby' ||
         jsFramework === 'Other';
 
     if (typescript === 'No' || hasTypeScriptConfig) {

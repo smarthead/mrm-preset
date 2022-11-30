@@ -24,6 +24,16 @@ const task = () => {
     // Add rules to .gitignore
     lines('.gitignore').add(['.stylelintcache']).save();
 
+    // Create or load .stylelintignore, and set basic ignores
+    lines('.stylelintignore')
+        .add([
+            '/node_modules',
+            '/build',
+            '**/vendor/*',
+            '**/*.vendor.*'
+        ])
+        .save();
+
     // Create or load package.json
     const stylelintPattern =
         styleSystem === 'SCSS' ? 'src/**/*.{css,scss}' : 'src/**/*.css';
@@ -39,11 +49,6 @@ const task = () => {
             'lint:css:fix',
             `stylelint --quiet --cache --allow-empty-input --fix --config .stylelintrc-extended \"${stylelintPattern}\"`,
         )
-        .save();
-
-    // Create or load .stylelintignore, and set basic ignores
-    lines('.stylelintignore')
-        .add(['/node_modules', '/build', '**/vendor/*', '**/*.vendor.*'])
         .save();
 
     // Create or load .stylelintrc
