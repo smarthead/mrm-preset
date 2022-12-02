@@ -17,28 +17,28 @@ function task() {
     const lintStaged = {};
 
     // ESLint
-    // const eslintExtensions = ['js'];
+    const eslintExtensions = ['js'];
 
-    // if (isReactApp) {
-    //     eslintExtensions.push('jsx');
-    // }
+    if (isReactApp) {
+        eslintExtensions.push('jsx');
+    }
 
-    // if (isTypeScript) {
-    //     eslintExtensions.push('ts');
+    if (isTypeScript) {
+        eslintExtensions.push('ts');
 
-    //     if (isReactApp) {
-    //         eslintExtensions.push('tsx');
-    //     }
-    // }
+        if (isReactApp) {
+            eslintExtensions.push('tsx');
+        }
+    }
 
-    // const eslintPattern =
-    //     eslintExtensions.length > 1
-    //         ? '*.{' + eslintExtensions.join() + '}'
-    //         : '*.' + eslintExtensions[0];
+    const eslintPattern =
+        eslintExtensions.length > 1
+            ? '*.{' + eslintExtensions.join() + '}'
+            : '*.' + eslintExtensions[0];
 
-    // lintStaged[eslintPattern] = [
-    //     'eslint --quiet --cache --fix --ext .' + eslintExtensions.join(',.'),
-    // ];
+    lintStaged[eslintPattern] = [
+        'eslint --quiet --cache --fix --ext .' + eslintExtensions.join(',.'),
+    ];
 
     // Stylelint
     if (styleSystem === 'CSS' || styleSystem === 'SCSS') {

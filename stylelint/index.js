@@ -29,7 +29,7 @@ const task = () => {
         .add(['/node_modules', '/build', '**/vendor/*', '**/*.vendor.*'])
         .save();
 
-    // Create or load package.json
+    // Add scripts to package.json
     const stylelintPattern =
         styleSystem === 'SCSS' ? 'src/**/*.{css,scss}' : 'src/**/*.css';
 
