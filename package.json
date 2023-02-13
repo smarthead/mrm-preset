@@ -37,6 +37,6 @@
         "mrm-core": "^7.1.13"
     },
     "devDependencies": {
-        "prettier": "^2.8.0"
+        "prettier": "^2.8.4"
     }
 }
