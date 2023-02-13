@@ -1,8 +1,6 @@
 const config = {
     rules: {
-        basic: {
-            indentation: 4,
-        },
+        basic: {},
         extended: {
             'order/properties-order': [
                 // Position

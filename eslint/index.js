@@ -22,7 +22,7 @@ function task() {
         .add(['/node_modules', '/build', '**/vendor/*', '**/*.vendor.*'])
         .save();
 
-    // Default
+    // Add ESLint config
     // --------------------------------
 
     // Add necessary packages
@@ -43,9 +43,9 @@ function task() {
 
     packages.push('eslint');
     packages.push('eslint-config-standard');
-    packages.push('eslint-plugin-import');
-    packages.push('eslint-plugin-n');
-    packages.push('eslint-plugin-promise');
+    // packages.push('eslint-plugin-import');
+    // packages.push('eslint-plugin-n');
+    // packages.push('eslint-plugin-promise');
 
     // Create or load .eslintrc
     const eslintrc = json('.eslintrc');
@@ -74,7 +74,8 @@ function task() {
             browser: true,
             es2021: true,
         },
-        extends: 'standard',
+        extends: ['eslint:recommended', 'standard'],
+        overrides: [],
         parserOptions: {
             ecmaVersion: 'latest',
             sourceType: 'module',
@@ -85,6 +86,7 @@ function task() {
     eslintrc.save();
 
     // Add scripts to package.json
+    // --------------------------------
     const eslintExtensions = isTypeScript ? '.js,.ts' : '.js';
 
     pkg.appendScript('lint', 'npm run lint:js');
