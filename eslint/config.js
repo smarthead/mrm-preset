@@ -1,7 +1,11 @@
 const config = {
-    ts: {
+    js: {
         rules: {
             curly: 2,
+        },
+    },
+    ts: {
+        rules: {
             '@typescript-eslint/no-explicit-any': 0,
         },
     },

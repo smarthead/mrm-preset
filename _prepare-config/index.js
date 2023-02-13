@@ -1,10 +1,10 @@
 const { json } = require('mrm-core');
 
-const task = (params) => {
+const task = (parameters) => {
     json('.mrm.config.json')
         .merge({
-            ...params,
-            projectName: (params.projectName || '')
+            ...parameters,
+            projectName: (parameters.projectName || '')
                 .replace(/\s+/g, '-')
                 .toLowerCase(),
         })

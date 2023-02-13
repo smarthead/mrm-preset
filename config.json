@@ -8,8 +8,6 @@
             "gitattributes",
             "browserslist",
             "stylelint",
-            "eslint",
-            "typescript",
             "lint-staged",
             "_remove-config"
         ]

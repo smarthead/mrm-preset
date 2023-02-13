@@ -26,28 +26,60 @@ function task() {
     // --------------------------------
 
     // Add necessary packages
+    // BASE
+    // "eslint": "^8.28.0",
+    // "eslint-config-standard": "^17.0.0",
+    // "eslint-plugin-import": "^2.26.0",
+    // "eslint-plugin-n": "^15.5.1",
+    // "eslint-plugin-promise": "^6.1.1"
+
+    // TS
+    // "@typescript-eslint/eslint-plugin": "^5.45.0",
+    // "eslint": "^8.28.0",
+    // "eslint-config-standard-with-typescript": "^23.0.0",
+    // "eslint-plugin-import": "^2.26.0",
+    // "eslint-plugin-n": "^15.5.1",
+    // "eslint-plugin-promise": "^6.1.1",
+
     packages.push('eslint');
+    packages.push('eslint-config-standard');
+    packages.push('eslint-plugin-import');
+    packages.push('eslint-plugin-n');
+    packages.push('eslint-plugin-promise');
 
     // Create or load .eslintrc
     const eslintrc = json('.eslintrc');
 
+    // eslintrc.merge({
+    //     extends: 'eslint:recommended',
+    //     env: {
+    //         browser: true,
+    //         node: true,
+    //         es6: true,
+    //         es2017: true,
+    //         es2020: true,
+    //     },
+    //     globals: {
+    //         window: 'readonly',
+    //     },
+    //     rules: config.ts.rules,
+    //     parserOptions: {
+    //         ecmaVersion: 2020,
+    //         sourceType: 'module',
+    //     },
+    // });
+
     eslintrc.merge({
-        extends: 'eslint:recommended',
         env: {
             browser: true,
-            node: true,
-            es6: true,
-            es2017: true,
-            es2020: true,
+            es2021: true,
         },
-        globals: {
-            window: 'readonly',
-        },
-        rules: config.ts.rules,
+        extends: 'standard',
         parserOptions: {
-            ecmaVersion: 2020,
+            ecmaVersion: 'latest',
             sourceType: 'module',
         },
+        rules: config.js.rules,
     });
 
     eslintrc.save();
