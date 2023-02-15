@@ -7,20 +7,14 @@
             "gitignore",
             "gitattributes",
             "browserslist",
+            "stylelint",
             "_remove-config"
         ],
+
         "other": [
-          "_prepare-config",
-          "package",
-          "editorconfig",
-          "gitignore",
-          "gitattributes",
-          "browserslist",
-          "stylelint",
           "eslint",
           "typescript",
-          "lint-staged",
-          "_remove-config"
+          "lint-staged"
       ]
     }
 }
