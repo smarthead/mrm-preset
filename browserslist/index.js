@@ -15,15 +15,11 @@ const task = () => {
         '>0.2%',
         'not dead',
         'not op_mini all',
-        'not ie 11',
-        'not chrome < 90',
-        'not iOS < 12',
-        'not Safari < 13',
         '',
         '[development]',
-        'last 1 chrome version',
-        'last 1 firefox version',
-        'last 1 safari version',
+        'last 2 chrome version',
+        'last 2 firefox version',
+        'last 2 safari version',
     ]);
 
     browserslistrc.save();
