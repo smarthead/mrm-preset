@@ -6,13 +6,30 @@ const task = () => {
     const { styleSystem } = json('.mrm.config.json').get();
 
     const packages = {
-        CSS: ['stylelint', 'stylelint-config-standard', 'stylelint-order'],
+        CSS: [
+            'stylelint',
+
+            // Configs
+            'stylelint-config-standard',
+
+            // Plugins
+            // TODO: Could we switch stylelint-order to stylelint-config-idiomatic-order ?
+            'stylelint-order',
+        ],
         SCSS: [
             'stylelint',
-            'stylelint-config-standard',
+
+            // Configs
+            'stylelint-config-standard-scss',
+            // Includes:
+            // stylelint-config-recommended
+            // stylelint-config-standard
+            // stylelint-scss
+            // stylelint-config-recommended-scss
+            // postcss-scss
+
+            // Plugins
             'stylelint-order',
-            'stylelint-scss',
-            'stylelint-config-recommended-scss',
         ],
     };
 

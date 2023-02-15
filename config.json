@@ -11,10 +11,6 @@
             "_remove-config"
         ],
 
-        "other": [
-          "eslint",
-          "typescript",
-          "lint-staged"
-      ]
+        "other": ["eslint", "typescript", "lint-staged"]
     }
 }
