@@ -1,18 +1,8 @@
 const config = require('../config');
 
-const getConfig = (styleSystem, extended = false) => {
-    const plugins = [
-        ...(styleSystem === 'SCSS' ? ['stylelint-scss'] : []),
-        ...(extended ? ['stylelint-order'] : []),
-    ];
-
+const getConfig = (extensions = [], plugins = [], extended = false) => {
     return {
-        extends: [
-            'stylelint-config-standard',
-            ...(styleSystem === 'SCSS'
-                ? ['stylelint-config-recommended-scss']
-                : []),
-        ],
+        ...(extensions.length > 0 ? { extends: extensions } : {}),
 
         ...(plugins.length > 0 ? { plugins } : {}),
 

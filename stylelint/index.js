@@ -5,32 +5,17 @@ const getConfig = require('./utils/getConfig');
 const task = () => {
     const { styleSystem } = json('.mrm.config.json').get();
 
-    const packages = {
-        CSS: [
-            'stylelint',
+    const core = ['stylelint'];
 
-            // Configs
-            'stylelint-config-standard',
+    const extensions = {
+        CSS: ['stylelint-config-standard'],
+        SCSS: ['stylelint-config-standard-scss'],
+    };
 
-            // Plugins
-            // TODO: Could we switch stylelint-order to stylelint-config-idiomatic-order ?
-            'stylelint-order',
-        ],
-        SCSS: [
-            'stylelint',
-
-            // Configs
-            'stylelint-config-standard-scss',
-            // Includes:
-            // stylelint-config-recommended
-            // stylelint-config-standard
-            // stylelint-scss
-            // stylelint-config-recommended-scss
-            // postcss-scss
-
-            // Plugins
-            'stylelint-order',
-        ],
+    // TODO: Could we switch stylelint-order to stylelint-config-idiomatic-order ?
+    const plugins = {
+        CSS: ['stylelint-order'],
+        SCSS: ['stylelint-order'],
     };
 
     // TODO: Add CSS-in-JS (Styled Components, JSS, Emotion)
@@ -64,12 +49,18 @@ const task = () => {
         .save();
 
     // Create or load .stylelintrc
-    json('.stylelintrc').merge(getConfig(styleSystem)).save();
+    json('.stylelintrc')
+        .merge(getConfig(extensions[styleSystem], plugins[styleSystem]))
+        .save();
 
-    json('.stylelintrc-extended').merge(getConfig(styleSystem, true)).save();
+    json('.stylelintrc-extended')
+        .merge(getConfig(extensions[styleSystem], plugins[styleSystem], true))
+        .save();
 
     // Install packages
-    install(packages[styleSystem]);
+    install(core);
+    install(extensions[styleSystem]);
+    install(plugins[styleSystem]);
 };
 
 task.description = 'Adds stylelint';

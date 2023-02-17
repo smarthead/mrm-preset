@@ -1,6 +1,7 @@
 const config = {
     rules: {
         basic: {},
+
         // TODO: Update this config. Add or remove rules.
         extended: {
             'order/properties-order': [
