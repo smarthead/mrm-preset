@@ -14,6 +14,7 @@ const task = () => {
         '[production]',
         '>0.2%',
         'not dead',
+        'not iOS < 14',
         'not op_mini all',
         '',
         '[development]',
