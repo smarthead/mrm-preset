@@ -50,7 +50,7 @@ const task = () => {
 
     // Create or load .stylelintrc
     json('.stylelintrc')
-        .merge(getConfig(extensions[styleSystem], plugins[styleSystem]))
+        .merge(getConfig(extensions[styleSystem]))
         .save();
 
     json('.stylelintrc-extended')
