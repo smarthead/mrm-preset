@@ -1,6 +1,6 @@
 # Mrm Preset
 
-SmartHead preset for [Mrm](https://mrm.js.org)
+[Mrm](https://mrm.js.org) Preset ✨ from SmartHead
 
 This preset includes the following Mrm tasks
 
