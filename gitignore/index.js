@@ -3,6 +3,7 @@ const { lines } = require('mrm-core');
 const task = () => {
     lines('.gitignore')
         .add([
+            '',
             '#',
             '/node_modules',
             '/build',
