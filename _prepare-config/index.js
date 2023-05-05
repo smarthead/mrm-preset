@@ -56,14 +56,12 @@ task.parameters = {
         type: 'list',
         message: 'Which JS frameworks or libraries are you going to use?',
         choices: [
-            'None',
-            'React',
             'Create React App',
             'Next.js',
             'Gatsby',
-            'Other',
+            'None'
         ],
-        default: 'None',
+        default: 'Create React App',
     },
 
     typescript: {
