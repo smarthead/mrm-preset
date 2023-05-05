@@ -4,11 +4,11 @@
             "_prepare-config",
             "package",
             "editorconfig",
+            "gitignore",
             "_remove-config"
         ],
 
         "other": [
-            "gitignore",
             "gitattributes",
             "browserslist",
             "eslint",
