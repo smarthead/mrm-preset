@@ -12,6 +12,8 @@
 
         "other": [
             "eslint",
+            "stylelint",
+            "prettier",
             "typescript",
             "lint-staged"
         ]
