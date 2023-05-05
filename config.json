@@ -1,9 +1,13 @@
 {
     "aliases": {
-        "default": ["_prepare-config", "package", "_remove-config"],
+        "default": [
+            "_prepare-config",
+            "package",
+            "editorconfig",
+            "_remove-config"
+        ],
 
         "other": [
-            "editorconfig",
             "gitignore",
             "gitattributes",
             "browserslist",

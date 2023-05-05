@@ -12,9 +12,6 @@ const task = () => {
             trim_trailing_whitespace: true,
             max_line_length: 120,
         })
-        .set('*.{json,yml,md,babelrc}', {
-            indent_size: 2,
-        })
         .set('*.md', {
             trim_trailing_whitespace: false,
         })
