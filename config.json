@@ -6,11 +6,11 @@
             "editorconfig",
             "gitignore",
             "gitattributes",
+            "browserslist",
             "_remove-config"
         ],
 
         "other": [
-            "browserslist",
             "eslint",
             "typescript",
             "lint-staged"

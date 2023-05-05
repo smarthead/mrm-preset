@@ -10,20 +10,24 @@ const task = () => {
         return;
     }
 
-    browserslistrc.set([
-        '[production]',
-        '>0.2%',
-        'not dead',
-        'not iOS < 14',
-        'not op_mini all',
-        '',
-        '[development]',
-        'last 2 chrome version',
-        'last 2 firefox version',
-        'last 2 safari version',
-    ]);
+    pkg.set('browserslist', ['>0.2%', 'not dead', 'not iOS < 14', 'not op_mini all']);
 
-    browserslistrc.save();
+    pkg.save();
+
+    // browserslistrc.set([
+    //     '[production]',
+    //     '>0.2%',
+    //     'not dead',
+    //     'not iOS < 14',
+    //     'not op_mini all',
+    //     '',
+    //     '[development]',
+    //     'last 2 chrome version',
+    //     'last 2 firefox version',
+    //     'last 2 safari version',
+    // ]);
+
+    // browserslistrc.save();
 };
 
 task.description = 'Adds browserslist';
