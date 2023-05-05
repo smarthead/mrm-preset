@@ -5,11 +5,11 @@
             "package",
             "editorconfig",
             "gitignore",
+            "gitattributes",
             "_remove-config"
         ],
 
         "other": [
-            "gitattributes",
             "browserslist",
             "eslint",
             "typescript",
