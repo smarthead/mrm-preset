@@ -7,7 +7,6 @@
             "gitignore",
             "gitattributes",
             "browserslist",
-            "stylelint",
             "_remove-config"
         ],
 
