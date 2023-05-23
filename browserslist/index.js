@@ -13,9 +13,8 @@ const task = () => {
     pkg.set('browserslist', [
         '>0.2%',
         'not dead',
-        'not op_mini all',
         'not iOS < 14',
-        'not Safari < 14',
+        'not op_mini all',
     ]);
 
     pkg.save();
